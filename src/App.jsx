@@ -45,6 +45,7 @@ export default function App() {
             <Route path="/services" element={<ServicesPage onEnquire={handleOpenEnquiry} />} />
             <Route path="/about" element={<AboutPage onEnquire={handleOpenEnquiry} />} />
             <Route path="/contact" element={<ContactPage />} />
+            <Route path="*" element={<HomePage onEnquire={handleOpenEnquiry} />} />
           </Routes>
         </main>
 
