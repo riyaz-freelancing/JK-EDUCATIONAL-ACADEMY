@@ -1,24 +1,16 @@
 import React, { useState } from 'react';
-import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
 import Navbar from './components/Navbar';
+import HeroSection from './components/HeroSection';
+import IntermediateTuitions from './components/IntermediateTuitions';
+import DegreeTuitions from './components/DegreeTuitions';
+import CorporateTrainings from './components/CorporateTrainings';
+import TechCertifications from './components/TechCertifications';
+import SpecializedDomains from './components/SpecializedDomains';
+import BasicCourses from './components/BasicCourses';
+import CourseFilterBar from './components/CourseFilterBar';
+import AssessmentSection from './components/AssessmentSection';
 import Footer from './components/Footer';
 import EnquiryModal from './components/EnquiryModal';
-
-import HomePage from './pages/HomePage';
-import AcademyPage from './pages/AcademyPage';
-import CorporateTrainingPage from './pages/CorporateTrainingPage';
-import CareerCounsellingPage from './pages/CareerCounsellingPage';
-import ServicesPage from './pages/ServicesPage';
-import AboutPage from './pages/AboutPage';
-import ContactPage from './pages/ContactPage';
-
-function ScrollToTop() {
-  const { pathname } = useLocation();
-  React.useEffect(() => {
-    window.scrollTo(0, 0);
-  }, [pathname]);
-  return null;
-}
 
 export default function App() {
   const [enquiryModalOpen, setEnquiryModalOpen] = useState(false);
@@ -27,37 +19,55 @@ export default function App() {
     setEnquiryModalOpen(true);
   };
 
+  const handleCloseEnquiry = () => {
+    setEnquiryModalOpen(false);
+  };
+
   return (
-    <Router>
-      <ScrollToTop />
-      <div style={{ minHeight: '100vh', display: 'flex', flexDirection: 'column', backgroundColor: '#f8fafc' }}>
-        
-        {/* Responsive Sticky Header */}
-        <Navbar onEnquire={handleOpenEnquiry} />
+    <div style={{ minHeight: '100vh', display: 'flex', flexDirection: 'column', backgroundColor: '#ffffff', color: '#0f172a' }}>
+      
+      {/* 1. Header Navigation */}
+      <Navbar onEnquire={handleOpenEnquiry} />
 
-        {/* Dynamic Route Content */}
-        <main style={{ flex: 1 }}>
-          <Routes>
-            <Route path="/" element={<HomePage onEnquire={handleOpenEnquiry} />} />
-            <Route path="/academy" element={<AcademyPage onEnquire={handleOpenEnquiry} />} />
-            <Route path="/corporate-training" element={<CorporateTrainingPage onEnquire={handleOpenEnquiry} />} />
-            <Route path="/career-counselling" element={<CareerCounsellingPage onEnquire={handleOpenEnquiry} />} />
-            <Route path="/services" element={<ServicesPage onEnquire={handleOpenEnquiry} />} />
-            <Route path="/about" element={<AboutPage onEnquire={handleOpenEnquiry} />} />
-            <Route path="/contact" element={<ContactPage />} />
-            <Route path="*" element={<HomePage onEnquire={handleOpenEnquiry} />} />
-          </Routes>
-        </main>
+      {/* Main Content Sections matching design screenshot */}
+      <main style={{ flex: 1 }}>
+        {/* 2. Hero Header & Node Flow Diagram */}
+        <HeroSection onEnquire={handleOpenEnquiry} />
 
-        {/* Reusable Quick Enquiry Modal Popup */}
-        <EnquiryModal
-          isOpen={enquiryModalOpen}
-          onClose={() => setEnquiryModalOpen(false)}
-        />
+        {/* 3. Intermediate Tuitions (TS & AP Board) */}
+        <IntermediateTuitions onEnquire={handleOpenEnquiry} />
 
-        {/* Multi-column Footer */}
-        <Footer />
-      </div>
-    </Router>
+        {/* 4. Tuitions for B.Com (Gen, Comp & Honors) */}
+        <DegreeTuitions onEnquire={handleOpenEnquiry} />
+
+        {/* 5. Corporate Trainings (Non-IT) */}
+        <CorporateTrainings onEnquire={handleOpenEnquiry} />
+
+        {/* 6. IT & Technology Certifications */}
+        <TechCertifications onEnquire={handleOpenEnquiry} />
+
+        {/* 7. Specialized Domains (Non-IT Operations) */}
+        <SpecializedDomains onEnquire={handleOpenEnquiry} />
+
+        {/* 8. Basic Courses & Essential Industry Tools */}
+        <BasicCourses onEnquire={handleOpenEnquiry} />
+
+        {/* 9. Course Category Pills Filter Bar */}
+        <CourseFilterBar />
+
+        {/* 10. Schedule 1-on-1 Academic Audit / Assessment */}
+        <AssessmentSection />
+      </main>
+
+      {/* 11. Footer */}
+      <Footer />
+
+      {/* 12. Quick Enquiry Modal Popup */}
+      <EnquiryModal
+        isOpen={enquiryModalOpen}
+        onClose={handleCloseEnquiry}
+      />
+
+    </div>
   );
 }

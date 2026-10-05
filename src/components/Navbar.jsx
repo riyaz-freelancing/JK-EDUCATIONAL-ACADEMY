@@ -1,229 +1,163 @@
 import React, { useState, useEffect } from 'react';
-import { NavLink, useLocation } from 'react-router-dom';
-import { Menu, X, ArrowRight } from 'lucide-react';
+import { Phone, Calendar, Menu, X } from 'lucide-react';
 
 export default function Navbar({ onEnquire }) {
   const [isScrolled, setIsScrolled] = useState(false);
-  const [mobileOpen, setMobileOpen] = useState(false);
-  const location = useLocation();
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   useEffect(() => {
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 20);
-    };
-    window.addEventListener('scroll', handleScroll);
+    const handleScroll = () => setIsScrolled(window.scrollY > 20);
+    window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  useEffect(() => {
-    setMobileOpen(false);
-    window.scrollTo(0, 0);
-  }, [location.pathname]);
-
-  const navLinks = [
-    { name: 'Home', path: '/' },
-    { name: 'About Us', path: '/about' },
-    { name: 'Academy', path: '/academy' },
-    { name: 'Corporate Training', path: '/corporate-training' },
-    { name: 'Career Counselling', path: '/career-counselling' },
-    { name: 'Our Services', path: '/services' },
-    { name: 'Contact', path: '/contact' }
-  ];
+  const scrollToSection = (id) => {
+    setMobileMenuOpen(false);
+    const element = document.getElementById(id);
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
 
   return (
     <header style={{
       position: 'sticky',
       top: 0,
       zIndex: 1000,
-      backgroundColor: isScrolled ? 'rgba(255, 255, 255, 0.98)' : '#ffffff',
-      backdropFilter: isScrolled ? 'blur(12px)' : 'none',
+      backgroundColor: isScrolled ? 'rgba(255, 255, 255, 0.96)' : '#ffffff',
+      backdropFilter: 'blur(16px)',
       borderBottom: '1px solid #e2e8f0',
-      boxShadow: isScrolled ? '0 4px 20px rgba(15, 23, 42, 0.08)' : 'none',
-      transition: 'all 0.25s ease'
+      boxShadow: isScrolled ? '0 4px 20px rgba(15, 23, 42, 0.06)' : 'none',
+      transition: 'all 0.3s ease'
     }}>
-      <div className="container" style={{
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'space-between',
-        height: '76px'
-      }}>
-        
-        {/* Brand Logo & Tagline */}
-        <NavLink to="/" style={{ display: 'flex', alignItems: 'center', gap: '12px', textDecoration: 'none', flexShrink: 0, marginRight: '16px' }}>
+      <div className="container" style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', height: '76px' }}>
+
+        {/* Brand Logo */}
+        <a href="#hero" onClick={(e) => { e.preventDefault(); scrollToSection('hero'); }} style={{ display: 'flex', alignItems: 'center', gap: '14px', textDecoration: 'none' }}>
           <div style={{
-            width: '44px',
-            height: '44px',
-            borderRadius: '10px',
-            background: '#0f172a',
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            color: '#ef4444',
-            boxShadow: '0 4px 10px rgba(15, 23, 42, 0.15)',
-            fontWeight: 900,
-            fontSize: '1.2rem',
-            border: '2px solid #ef4444',
-            flexShrink: 0
+            width: '42px', height: '42px',
+            borderRadius: '12px',
+            background: 'linear-gradient(135deg, #0f172a 0%, #1e293b 100%)',
+            display: 'flex', alignItems: 'center', justifyContent: 'center',
+            fontWeight: 900, fontSize: '1.1rem', color: '#ffffff',
+            boxShadow: '0 4px 12px rgba(15, 23, 42, 0.2)',
+            letterSpacing: '-0.02em'
           }}>
             JK
           </div>
-          <div style={{ textAlign: 'left', whiteSpace: 'nowrap' }}>
-            <div style={{ fontSize: '1.2rem', fontWeight: 800, color: '#0f172a', letterSpacing: '-0.02em', lineHeight: 1.15 }}>
-              JK ACADEMY
+          <div>
+            <div style={{ fontSize: '1.15rem', fontWeight: 800, color: '#0f172a', letterSpacing: '-0.02em', lineHeight: 1.1 }}>
+              JK ACADEMY<span style={{ color: '#2563eb', fontSize: '1.2rem' }}>.</span>
             </div>
-            <div style={{ fontSize: '0.625rem', fontWeight: 800, color: '#dc2626', letterSpacing: '0.07em', textTransform: 'uppercase', marginTop: '2px' }}>
-              Academic &amp; Career Excellence
+            <div style={{ fontSize: '0.62rem', fontWeight: 700, color: '#64748b', letterSpacing: '0.1em', textTransform: 'uppercase', marginTop: '2px' }}>
+              Academia & Enterprise
             </div>
           </div>
-        </NavLink>
+        </a>
 
-        {/* Desktop Nav Links */}
-        <nav style={{ display: 'flex', alignItems: 'center', gap: '20px', flexShrink: 1 }} className="desktop-nav">
-          {navLinks.map((link) => (
-            <NavLink
-              key={link.path}
-              to={link.path}
-              style={({ isActive }) => ({
-                fontSize: '0.875rem',
-                fontWeight: isActive ? 700 : 600,
-                color: isActive ? '#dc2626' : '#334155',
-                textDecoration: 'none',
-                position: 'relative',
-                padding: '26px 0',
-                whiteSpace: 'nowrap',
-                display: 'inline-flex',
-                alignItems: 'center',
-                transition: 'color 0.2s ease'
-              })}
-            >
-              {({ isActive }) => (
-                <>
-                  <span>{link.name}</span>
-                  {isActive && (
-                    <span style={{
-                      position: 'absolute',
-                      bottom: '0px',
-                      left: '0px',
-                      right: '0px',
-                      height: '3px',
-                      backgroundColor: '#dc2626',
-                      borderRadius: '3px 3px 0 0'
-                    }} />
-                  )}
-                </>
-              )}
-            </NavLink>
-          ))}
+        {/* Desktop Navigation Links */}
+        <nav className="desktop-only" style={{ display: 'flex', alignItems: 'center', gap: '22px' }}>
+          <button onClick={() => scrollToSection('intermediate')} style={navLinkStyle}>Intermediate</button>
+          <button onClick={() => scrollToSection('degree')} style={navLinkStyle}>B.Com</button>
+          <button onClick={() => scrollToSection('corporate')} style={navLinkStyle}>Corporate</button>
+          <button onClick={() => scrollToSection('tech')} style={navLinkStyle}>IT Certs</button>
+          <button onClick={() => scrollToSection('basic')} style={navLinkStyle}>Basic Tools</button>
+          <button onClick={() => scrollToSection('assessment')} style={navLinkStyle}>Assessment</button>
         </nav>
 
-        {/* Right CTA Button & Mobile Trigger */}
-        <div style={{ display: 'flex', alignItems: 'center', gap: '12px', flexShrink: 0, marginLeft: '16px' }}>
-          <button
-            onClick={onEnquire}
-            style={{
-              height: '42px',
-              padding: '0 22px',
-              fontSize: '0.875rem',
-              fontWeight: 700,
-              borderRadius: '9999px',
-              backgroundColor: '#dc2626',
-              color: 'white',
-              border: 'none',
-              cursor: 'pointer',
-              whiteSpace: 'nowrap',
-              boxShadow: '0 4px 14px rgba(220, 38, 38, 0.35)',
-              transition: 'all 0.25s ease',
-              display: 'inline-flex',
-              alignItems: 'center',
-              justify: 'center',
-              gap: '6px'
-            }}
-            onMouseEnter={(e) => { e.currentTarget.style.transform = 'translateY(-2px)'; e.currentTarget.style.backgroundColor = '#b91c1c'; }}
-            onMouseLeave={(e) => { e.currentTarget.style.transform = 'translateY(0)'; e.currentTarget.style.backgroundColor = '#dc2626'; }}
-          >
-            <span>Enquire Now</span>
-            <ArrowRight size={16} />
+        {/* Right Info & CTA */}
+        <div style={{ display: 'flex', alignItems: 'center', gap: '16px' }}>
+          
+          {/* Phone Badge */}
+          <a href="tel:+919177893905" className="desktop-only" style={{
+            display: 'flex', alignItems: 'center', gap: '8px',
+            padding: '7px 14px', borderRadius: '9999px',
+            background: 'rgba(37, 99, 235, 0.08)',
+            border: '1px solid rgba(37, 99, 235, 0.2)',
+            color: '#1d4ed8', fontSize: '0.8rem', fontWeight: 700,
+            textDecoration: 'none'
+          }}>
+            <Phone size={14} style={{ color: '#2563eb' }} />
+            +91 9177893905
+          </a>
+
+          {/* Consultation CTA */}
+          <button onClick={onEnquire} className="btn-blue-light" style={{ padding: '9px 18px', fontSize: '0.85rem' }}>
+            <Calendar size={15} />
+            <span className="desktop-only">Book Assessment</span>
+            <span className="mobile-only">Enquire</span>
           </button>
 
           {/* Mobile Hamburger Toggle */}
           <button
-            onClick={() => setMobileOpen(!mobileOpen)}
-            className="mobile-hamburger"
+            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+            className="mobile-only"
             style={{
-              display: 'none',
+              background: '#f1f5f9',
+              border: '1px solid #cbd5e1',
+              color: '#0f172a',
               padding: '8px',
               borderRadius: '8px',
-              backgroundColor: '#f1f5f9',
-              color: '#0f172a',
-              border: 'none',
               cursor: 'pointer'
             }}
-            aria-label="Toggle navigation menu"
           >
-            {mobileOpen ? <X size={24} /> : <Menu size={24} />}
+            {mobileMenuOpen ? <X size={22} /> : <Menu size={22} />}
           </button>
         </div>
-
       </div>
 
-      {/* Mobile Drawer Menu */}
-      {mobileOpen && (
+      {/* Mobile Menu Overlay */}
+      {mobileMenuOpen && (
         <div style={{
           backgroundColor: '#ffffff',
-          borderTop: '1px solid #e2e8f0',
+          borderBottom: '1px solid #e2e8f0',
           padding: '20px 24px',
-          boxShadow: '0 10px 25px rgba(0, 0, 0, 0.1)',
-          animation: 'fadeUp 0.25s ease'
+          display: 'flex',
+          flexDirection: 'column',
+          gap: '12px',
+          boxShadow: '0 10px 30px rgba(15, 23, 42, 0.08)'
         }}>
-          <div style={{ display: 'flex', flexDirection: 'column', gap: '14px', textAlign: 'left' }}>
-            {navLinks.map((link) => (
-              <NavLink
-                key={link.path}
-                to={link.path}
-                onClick={() => setMobileOpen(false)}
-                style={({ isActive }) => ({
-                  fontSize: '0.95rem',
-                  fontWeight: isActive ? 700 : 600,
-                  color: isActive ? '#dc2626' : '#1e293b',
-                  textDecoration: 'none',
-                  padding: '8px 0',
-                  borderBottom: '1px solid #f1f5f9'
-                })}
-              >
-                {link.name}
-              </NavLink>
-            ))}
-            <button
-              onClick={() => { setMobileOpen(false); onEnquire(); }}
-              style={{
-                width: '100%',
-                height: '44px',
-                borderRadius: '9999px',
-                backgroundColor: '#dc2626',
-                color: 'white',
-                fontWeight: 700,
-                fontSize: '0.95rem',
-                border: 'none',
-                cursor: 'pointer',
-                marginTop: '10px'
-              }}
-            >
-              Enquire Now
-            </button>
-          </div>
+          <button onClick={() => scrollToSection('intermediate')} style={mobileNavLinkStyle}>Intermediate (TS & AP Board)</button>
+          <button onClick={() => scrollToSection('degree')} style={mobileNavLinkStyle}>Tuitions for B.Com</button>
+          <button onClick={() => scrollToSection('corporate')} style={mobileNavLinkStyle}>Corporate Trainings (Non-IT)</button>
+          <button onClick={() => scrollToSection('tech')} style={mobileNavLinkStyle}>IT & Tech Certifications</button>
+          <button onClick={() => scrollToSection('specialized')} style={mobileNavLinkStyle}>Specialized Domains</button>
+          <button onClick={() => scrollToSection('basic')} style={mobileNavLinkStyle}>Basic Courses & Tools</button>
+          <button onClick={() => scrollToSection('assessment')} style={mobileNavLinkStyle}>Schedule Career Assessment</button>
         </div>
       )}
 
       <style>{`
-        @media (max-width: 1140px) {
-          .desktop-nav {
-            display: none !important;
-          }
-          .mobile-hamburger {
-            display: block !important;
-          }
+        @media (max-width: 900px) {
+          .desktop-only { display: none !important; }
+        }
+        @media (min-width: 901px) {
+          .mobile-only { display: none !important; }
         }
       `}</style>
     </header>
   );
 }
+
+const navLinkStyle = {
+  background: 'none',
+  border: 'none',
+  color: '#334155',
+  fontSize: '0.85rem',
+  fontWeight: 600,
+  cursor: 'pointer',
+  transition: 'color 0.2s ease',
+  padding: '6px 4px'
+};
+
+const mobileNavLinkStyle = {
+  background: 'none',
+  border: 'none',
+  color: '#0f172a',
+  fontSize: '0.95rem',
+  fontWeight: 600,
+  textAlign: 'left',
+  padding: '10px 0',
+  borderBottom: '1px solid #f1f5f9',
+  cursor: 'pointer'
+};

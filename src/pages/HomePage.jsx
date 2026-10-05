@@ -1,309 +1,316 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import {
-  ArrowRight,
-  CheckCircle,
-  Users,
-  Award,
-  BookOpen,
-  Briefcase,
-  Compass,
-  Sparkles,
-  Target,
-  ShieldCheck,
-  PhoneCall,
-  Star,
-  Code
+  ArrowRight, CheckCircle, Star, Target, Sparkles,
+  Briefcase, Code, BookOpen, PhoneCall, Users, Award, TrendingUp
 } from 'lucide-react';
-import Button from '../components/common/Button';
+import HeroSection from '../components/HeroSection';
 import SectionHeading from '../components/common/SectionHeading';
 import Card from '../components/common/Card';
+import Button from '../components/common/Button';
 import FAQAccordion from '../components/FAQAccordion';
-import HeroSection from '../components/HeroSection';
 import {
-  academicCourses,
-  whyChooseUsItems,
-  corporateTraining,
-  trainingToOpportunityProcess,
-  counsellingFeatures,
-  allServices,
-  placementHighlights,
-  aboutStats,
-  testimonials
+  academicCourses, corporateTraining, counsellingFeatures,
+  allServices, placementHighlights, aboutStats, testimonials,
+  trainingToOpportunityProcess
 } from '../data/academyData';
+
+const SectionDivider = () => (
+  <div style={{ height: '1px', background: '#f1f5f9', margin: '0' }} />
+);
+
+const IconBox = ({ icon: Icon, color = 'accent', size = 20 }) => {
+  const colors = {
+    accent: { bg: '#fef2f2', fg: '#dc2626' },
+    blue: { bg: '#eff6ff', fg: '#2563eb' },
+    green: { bg: '#f0fdf4', fg: '#16a34a' },
+    navy: { bg: '#f8fafc', fg: '#0f172a' },
+  };
+  const c = colors[color] || colors.accent;
+  return (
+    <div style={{
+      width: size + 22, height: size + 22,
+      borderRadius: '10px', backgroundColor: c.bg, color: c.fg,
+      display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0
+    }}>
+      <Icon size={size} />
+    </div>
+  );
+};
 
 export default function HomePage({ onEnquire }) {
   const navigate = useNavigate();
 
   return (
-    <div style={{ textAlign: 'left' }}>
-      
-      {/* HERO SECTION */}
+    <div>
+      {/* 1. HERO */}
       <HeroSection onEnquire={onEnquire} />
 
-      {/* ACADEMY PREVIEW SECTION */}
+      {/* 2. STATS TRUST BAR */}
+      <section style={{ backgroundColor: '#0f172a', padding: '28px 0' }}>
+        <div className="container">
+          <div style={{
+            display: 'flex', alignItems: 'center', justifyContent: 'space-between',
+            gap: '20px', flexWrap: 'wrap'
+          }}>
+            {aboutStats.map((s, i) => (
+              <div key={s.label} style={{
+                display: 'flex', alignItems: 'center', gap: '14px',
+                borderRight: i < aboutStats.length - 1 ? '1px solid rgba(255,255,255,0.1)' : 'none',
+                paddingRight: i < aboutStats.length - 1 ? '20px' : '0',
+                flex: 1, minWidth: '140px'
+              }}>
+                <div style={{ fontSize: '2rem', fontWeight: 800, color: '#f87171', letterSpacing: '-0.04em' }}>{s.value}</div>
+                <div style={{ fontSize: '0.8rem', color: '#64748b', lineHeight: 1.4, fontWeight: 500 }}>{s.label}</div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <SectionDivider />
+
+      {/* 3. ACADEMY COURSES PREVIEW */}
       <section className="section-padding" style={{ backgroundColor: '#ffffff' }}>
         <div className="container">
           <SectionHeading
             badge="ACADEMY COURSES"
-            title="Build a Strong Academic Foundation"
-            subtitle="Personalized academic support with experienced faculty, structured learning and continuous assessment."
+            title="Comprehensive Academic Tuitions"
+            subtitle="Structured, personalised coaching by experienced faculty — from Intermediate to Post-Graduate levels."
           />
 
           <div style={{
-            display: 'grid',
-            gridTemplateColumns: 'repeat(3, 1fr)',
-            gap: '24px',
-            marginBottom: '40px'
+            display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)',
+            gap: '20px', marginBottom: '36px'
           }} className="responsive-3-col">
             {academicCourses.slice(0, 6).map((course) => {
               const IconC = course.icon;
               return (
                 <Card key={course.id}>
-                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '16px' }}>
-                    <div style={{
-                      width: '46px',
-                      height: '46px',
-                      borderRadius: '12px',
-                      backgroundColor: '#fef2f2',
-                      color: '#dc2626',
-                      display: 'flex',
-                      alignItems: 'center',
-                      justify: 'center'
-                    }}>
-                      <IconC size={24} />
-                    </div>
-                    <span style={{ fontSize: '0.725rem', fontWeight: 800, color: '#dc2626', backgroundColor: '#fef2f2', padding: '4px 10px', borderRadius: '6px' }}>
-                      {course.badge}
-                    </span>
+                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: '16px' }}>
+                    <IconBox icon={IconC} color="accent" />
+                    <span style={{
+                      fontSize: '0.68rem', fontWeight: 700, color: '#dc2626',
+                      backgroundColor: '#fef2f2', padding: '3px 9px',
+                      borderRadius: '6px', letterSpacing: '0.04em'
+                    }}>{course.badge}</span>
                   </div>
-
-                  <h3 style={{ fontSize: '1.25rem', fontWeight: 800, color: '#0f172a', marginBottom: '8px' }}>
+                  <h3 style={{ fontSize: '1.05rem', fontWeight: 700, color: '#0f172a', marginBottom: '8px', letterSpacing: '-0.02em' }}>
                     {course.title}
                   </h3>
-
-                  <p style={{ fontSize: '0.875rem', color: '#64748b', lineHeight: 1.6, marginBottom: '20px' }}>
+                  <p style={{ fontSize: '0.85rem', color: '#64748b', lineHeight: 1.6, marginBottom: '20px' }}>
                     {course.description}
                   </p>
-
-                  <Button variant="outline" size="sm" onClick={() => navigate('/academy')}>
-                    Learn More
-                  </Button>
+                  <button
+                    onClick={() => navigate('/academy')}
+                    style={{
+                      display: 'inline-flex', alignItems: 'center', gap: '6px',
+                      fontSize: '0.82rem', fontWeight: 600, color: '#dc2626',
+                      background: 'none', border: 'none', cursor: 'pointer', padding: 0
+                    }}
+                  >
+                    Learn More <ArrowRight size={14} />
+                  </button>
                 </Card>
               );
             })}
           </div>
 
           <div style={{ textAlign: 'center' }}>
-            <Button variant="navy" onClick={() => navigate('/academy')}>
-              View All Academic Courses
-            </Button>
+            <button
+              onClick={() => navigate('/academy')}
+              style={{
+                display: 'inline-flex', alignItems: 'center', gap: '8px',
+                padding: '12px 28px', backgroundColor: '#0f172a', color: '#fff',
+                border: 'none', borderRadius: '10px', cursor: 'pointer',
+                fontSize: '0.9rem', fontWeight: 600, letterSpacing: '-0.01em',
+                transition: 'all 0.2s ease'
+              }}
+              onMouseEnter={e => { e.currentTarget.style.backgroundColor = '#1e293b'; e.currentTarget.style.transform = 'translateY(-1px)'; }}
+              onMouseLeave={e => { e.currentTarget.style.backgroundColor = '#0f172a'; e.currentTarget.style.transform = ''; }}
+            >
+              View All Courses <ArrowRight size={16} />
+            </button>
           </div>
         </div>
       </section>
 
-      {/* CORPORATE TRAINING PREVIEW */}
-      <section className="section-padding" style={{ backgroundColor: '#f8fafc', borderTop: '1px solid #e2e8f0' }}>
+      <SectionDivider />
+
+      {/* 4. CORPORATE TRAINING PREVIEW */}
+      <section className="section-padding" style={{ backgroundColor: '#f8fafc' }}>
         <div className="container">
           <SectionHeading
-            badge="CORPORATE TRAINING"
-            title="Corporate Training for the Future Workforce"
-            subtitle="Industry-focused training programs designed for freshers, graduates and working professionals."
+            badge="CORPORATE & IT TRAINING"
+            title="Industry-Ready Training Programs"
+            subtitle="Finance, HR, IT, Non-IT, and Computer Applications — all built around real-world corporate standards."
           />
 
-          {/* IT & Non-IT Grid */}
-          <div style={{
-            display: 'grid',
-            gridTemplateColumns: '1fr 1fr',
-            gap: '32px',
-            marginBottom: '60px'
-          }} className="responsive-2-col">
-            
-            {/* IT Block */}
-            <div style={{ backgroundColor: '#ffffff', borderRadius: '20px', padding: '32px', border: '1px solid #e2e8f0' }}>
-              <div style={{ display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '20px' }}>
-                <Code size={24} style={{ color: '#dc2626' }} />
-                <h3 style={{ fontSize: '1.35rem', fontWeight: 800, color: '#0f172a' }}>IT Training Programs</h3>
-              </div>
-              <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
-                {corporateTraining.it.map((item) => (
-                  <div key={item.id} style={{ padding: '16px', borderRadius: '12px', backgroundColor: '#f8fafc', border: '1px solid #e2e8f0' }}>
-                    <h4 style={{ fontSize: '1.05rem', fontWeight: 800, color: '#0f172a', marginBottom: '4px' }}>{item.title}</h4>
-                    <p style={{ fontSize: '0.85rem', color: '#64748b', margin: 0 }}>{item.description}</p>
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '20px', marginBottom: '36px' }} className="responsive-3-col">
+            {[
+              {
+                icon: Briefcase, color: 'accent',
+                title: 'Finance & HR Domains',
+                sub: 'R2R · P2P · O2C · Saudi Payroll',
+                desc: 'Record to Report, Procure to Pay, Order to Cash, Indian & Saudi Payroll, and Talent Acquisition.',
+                path: '/corporate-training'
+              },
+              {
+                icon: Code, color: 'blue',
+                title: 'IT & Digital Courses',
+                sub: 'Full Stack · Digital Marketing',
+                desc: 'Practical training in Full Stack Development (React, Node, SQL) and Digital Marketing (SEO, Google Ads, SMM).',
+                path: '/corporate-training'
+              },
+              {
+                icon: Sparkles, color: 'green',
+                title: 'Basic & Non-IT Courses',
+                sub: 'Excel · Tally · DCA · AML/KYC',
+                desc: 'MS Office, Advanced Excel, Tally ERP, DCA, ADCA, PGDCA, Hardware, and AML/KYC process training.',
+                path: '/corporate-training'
+              }
+            ].map((item) => (
+              <Card key={item.title} style={{ backgroundColor: '#ffffff' }}>
+                <div style={{ display: 'flex', alignItems: 'center', gap: '12px', marginBottom: '16px' }}>
+                  <IconBox icon={item.icon} color={item.color} />
+                  <div>
+                    <h3 style={{ fontSize: '1rem', fontWeight: 700, color: '#0f172a', margin: 0, letterSpacing: '-0.02em' }}>{item.title}</h3>
+                    <span style={{ fontSize: '0.72rem', color: item.color === 'blue' ? '#2563eb' : item.color === 'green' ? '#16a34a' : '#dc2626', fontWeight: 600 }}>{item.sub}</span>
                   </div>
-                ))}
-              </div>
-            </div>
-
-            {/* Non-IT Block */}
-            <div style={{ backgroundColor: '#ffffff', borderRadius: '20px', padding: '32px', border: '1px solid #e2e8f0' }}>
-              <div style={{ display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '20px' }}>
-                <Briefcase size={24} style={{ color: '#2563eb' }} />
-                <h3 style={{ fontSize: '1.35rem', fontWeight: 800, color: '#0f172a' }}>Non-IT Process Training</h3>
-              </div>
-              <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
-                {corporateTraining.nonIt.map((item) => (
-                  <div key={item.id} style={{ padding: '16px', borderRadius: '12px', backgroundColor: '#f8fafc', border: '1px solid #e2e8f0' }}>
-                    <h4 style={{ fontSize: '1.05rem', fontWeight: 800, color: '#0f172a', marginBottom: '4px' }}>{item.title}</h4>
-                    <p style={{ fontSize: '0.85rem', color: '#64748b', margin: 0 }}>{item.description}</p>
-                  </div>
-                ))}
-              </div>
-            </div>
-
-          </div>
-
-          {/* FROM TRAINING TO OPPORTUNITY PROCESS */}
-          <SectionHeading
-            badge="OUR PROCESS"
-            title="From Training to Opportunity"
-            subtitle="A clear, structured path from concept learning to corporate onboarding."
-          />
-
-          <div style={{
-            display: 'grid',
-            gridTemplateColumns: 'repeat(4, 1fr)',
-            gap: '20px'
-          }} className="responsive-4-col">
-            {trainingToOpportunityProcess.map((st) => (
-              <Card key={st.step} style={{ textAlign: 'center', alignItems: 'center', display: 'flex', flexDirection: 'column' }}>
-                <div style={{
-                  width: '46px',
-                  height: '46px',
-                  borderRadius: '50%',
-                  backgroundColor: '#dc2626',
-                  color: 'white',
-                  fontWeight: 800,
-                  fontSize: '1rem',
-                  display: 'flex',
-                  alignItems: 'center',
-                  justify: 'center',
-                  marginBottom: '16px'
-                }}>
-                  {st.step}
                 </div>
-                <h4 style={{ fontSize: '1.1rem', fontWeight: 800, color: '#0f172a', marginBottom: '8px' }}>
-                  {st.title}
-                </h4>
-                <p style={{ fontSize: '0.85rem', color: '#64748b', lineHeight: 1.5 }}>
-                  {st.description}
-                </p>
+                <p style={{ fontSize: '0.85rem', color: '#64748b', lineHeight: 1.6, marginBottom: '18px' }}>{item.desc}</p>
+                <button
+                  onClick={() => navigate(item.path)}
+                  style={{
+                    display: 'inline-flex', alignItems: 'center', gap: '6px',
+                    fontSize: '0.82rem', fontWeight: 600, color: '#0f172a',
+                    background: 'none', border: '1.5px solid #e2e8f0', borderRadius: '8px',
+                    cursor: 'pointer', padding: '7px 14px', transition: 'all 0.2s ease'
+                  }}
+                  onMouseEnter={e => { e.currentTarget.style.backgroundColor = '#f8fafc'; e.currentTarget.style.borderColor = '#cbd5e1'; }}
+                  onMouseLeave={e => { e.currentTarget.style.backgroundColor = 'transparent'; e.currentTarget.style.borderColor = '#e2e8f0'; }}
+                >
+                  Explore <ArrowRight size={13} />
+                </button>
               </Card>
             ))}
           </div>
 
-        </div>
-      </section>
-
-      {/* CAREER COUNSELLING PREVIEW */}
-      <section className="section-padding" style={{ backgroundColor: '#ffffff' }}>
-        <div className="container">
+          {/* Process Steps */}
           <div style={{
-            display: 'grid',
-            gridTemplateColumns: '1fr 1fr',
-            gap: '48px',
-            alignItems: 'center'
-          }} className="responsive-2-col">
-            
-            <div>
-              <SectionHeading
-                badge="CAREER COUNSELLING"
-                title="Your Career. Your Direction. Our Guidance."
-                subtitle="Get personalized career guidance to understand your strengths, explore opportunities and choose the right learning path."
-                align="left"
-              />
-
-              <div style={{ display: 'flex', flexDirection: 'column', gap: '16px', marginBottom: '32px' }}>
-                {counsellingFeatures.map((f) => (
-                  <div key={f.title} style={{ display: 'flex', gap: '12px', alignItems: 'flex-start' }}>
-                    <CheckCircle size={20} style={{ color: '#dc2626', flexShrink: 0, marginTop: '2px' }} />
-                    <div>
-                      <h4 style={{ fontSize: '1rem', fontWeight: 700, color: '#0f172a' }}>{f.title}</h4>
-                      <p style={{ fontSize: '0.85rem', color: '#64748b' }}>{f.description}</p>
-                    </div>
-                  </div>
-                ))}
-              </div>
-
-              <Button variant="primary" size="lg" onClick={onEnquire}>
-                Book a Counselling Session
-              </Button>
+            backgroundColor: '#ffffff', borderRadius: '16px', padding: '36px',
+            border: '1px solid #e8edf3', marginTop: '40px'
+          }}>
+            <div style={{ textAlign: 'center', marginBottom: '32px' }}>
+              <div style={{ fontSize: '0.7rem', fontWeight: 700, color: '#dc2626', letterSpacing: '0.08em', textTransform: 'uppercase', marginBottom: '8px' }}>OUR PROCESS</div>
+              <h3 style={{ fontSize: '1.4rem', fontWeight: 700, color: '#0f172a', letterSpacing: '-0.02em' }}>From Training to Opportunity</h3>
             </div>
-
-            <div style={{
-              backgroundColor: '#0f172a',
-              borderRadius: '24px',
-              padding: '40px',
-              color: 'white'
-            }}>
-              <h3 style={{ fontSize: '1.6rem', fontWeight: 800, marginBottom: '14px', color: '#ffffff' }}>
-                1-on-1 Personalized Mentorship
-              </h3>
-              <p style={{ fontSize: '0.95rem', color: '#cbd5e1', lineHeight: 1.6, marginBottom: '28px' }}>
-                Every student receives individual focus from faculty and domain advisors to choose academic streams, resolve subject challenges, and navigate career paths.
-              </p>
-
-              <div style={{ display: 'flex', flexDirection: 'column', gap: '14px' }}>
-                {[
-                  'Fresher & Graduate Career Alignment',
-                  'Targeted Interview & Aptitude Training',
-                  'MNC & Domestic Opportunity Referrals'
-                ].map((item) => (
-                  <div key={item} style={{
-                    backgroundColor: '#1e293b',
-                    padding: '14px 18px',
-                    borderRadius: '12px',
-                    border: '1px solid #334155',
-                    display: 'flex',
-                    alignItems: 'center',
-                    gap: '10px',
-                    fontWeight: 700,
-                    fontSize: '0.9rem'
-                  }}>
-                    <Sparkles size={16} style={{ color: '#dc2626' }} />
-                    <span>{item}</span>
-                  </div>
-                ))}
-              </div>
+            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: '20px' }} className="responsive-4-col">
+              {trainingToOpportunityProcess.map((st, i) => (
+                <div key={st.step} style={{ textAlign: 'center' }}>
+                  <div style={{
+                    width: '44px', height: '44px', borderRadius: '50%',
+                    backgroundColor: '#dc2626', color: 'white',
+                    fontWeight: 800, fontSize: '1rem', display: 'flex',
+                    alignItems: 'center', justifyContent: 'center',
+                    margin: '0 auto 14px auto'
+                  }}>{st.step}</div>
+                  <h4 style={{ fontSize: '0.95rem', fontWeight: 700, color: '#0f172a', marginBottom: '6px', letterSpacing: '-0.01em' }}>{st.title}</h4>
+                  <p style={{ fontSize: '0.82rem', color: '#64748b', lineHeight: 1.55 }}>{st.description}</p>
+                </div>
+              ))}
             </div>
-
           </div>
         </div>
       </section>
 
-      {/* SERVICES GRID */}
-      <section className="section-padding" style={{ backgroundColor: '#f8fafc', borderTop: '1px solid #e2e8f0' }}>
+      <SectionDivider />
+
+      {/* 5. CAREER COUNSELLING PREVIEW */}
+      <section className="section-padding" style={{ backgroundColor: '#ffffff' }}>
+        <div className="container">
+          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '56px', alignItems: 'center' }} className="responsive-2-col">
+            <div>
+              <SectionHeading
+                badge="CAREER COUNSELLING"
+                title="Your Direction. Our Guidance."
+                subtitle="Get 1-on-1 personalised career guidance to identify your strengths, explore your options, and choose the right path."
+                align="left"
+              />
+              <div style={{ display: 'flex', flexDirection: 'column', gap: '14px', marginBottom: '32px' }}>
+                {counsellingFeatures.map((f) => (
+                  <div key={f.title} style={{ display: 'flex', gap: '12px', alignItems: 'flex-start' }}>
+                    <CheckCircle size={18} style={{ color: '#16a34a', flexShrink: 0, marginTop: '2px' }} />
+                    <div>
+                      <div style={{ fontSize: '0.9rem', fontWeight: 700, color: '#0f172a', marginBottom: '2px' }}>{f.title}</div>
+                      <div style={{ fontSize: '0.82rem', color: '#64748b', lineHeight: 1.5 }}>{f.description}</div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+              <button
+                onClick={onEnquire}
+                style={{
+                  display: 'inline-flex', alignItems: 'center', gap: '8px',
+                  padding: '13px 28px', backgroundColor: '#dc2626', color: '#fff',
+                  border: 'none', borderRadius: '10px', cursor: 'pointer',
+                  fontSize: '0.9rem', fontWeight: 700, letterSpacing: '-0.01em',
+                  boxShadow: '0 2px 10px rgba(220,38,38,0.3)',
+                  transition: 'all 0.2s ease'
+                }}
+                onMouseEnter={e => { e.currentTarget.style.backgroundColor = '#b91c1c'; e.currentTarget.style.transform = 'translateY(-1px)'; }}
+                onMouseLeave={e => { e.currentTarget.style.backgroundColor = '#dc2626'; e.currentTarget.style.transform = ''; }}
+              >
+                <PhoneCall size={16} />
+                Book a Free Session
+              </button>
+            </div>
+
+            <div style={{ backgroundColor: '#0f172a', borderRadius: '20px', padding: '40px', color: 'white' }}>
+              <h3 style={{ fontSize: '1.35rem', fontWeight: 700, color: '#fff', marginBottom: '12px', letterSpacing: '-0.025em' }}>
+                1-on-1 Personalised Mentorship
+              </h3>
+              <p style={{ fontSize: '0.9rem', color: '#64748b', lineHeight: 1.65, marginBottom: '28px' }}>
+                Every student receives individual focus from faculty and domain advisors to choose academic streams, resolve subject challenges, and navigate career paths with clarity.
+              </p>
+              {[
+                'Fresher & Graduate Career Alignment',
+                'Targeted Interview & Aptitude Training',
+                'MNC & Domestic Opportunity Referrals'
+              ].map((item) => (
+                <div key={item} style={{
+                  display: 'flex', alignItems: 'center', gap: '10px',
+                  backgroundColor: '#1e293b', padding: '13px 16px',
+                  borderRadius: '10px', border: '1px solid #334155',
+                  marginBottom: '10px', fontSize: '0.875rem', fontWeight: 600, color: '#e2e8f0'
+                }}>
+                  <div style={{ width: '6px', height: '6px', borderRadius: '50%', backgroundColor: '#dc2626', flexShrink: 0 }} />
+                  {item}
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <SectionDivider />
+
+      {/* 6. SERVICES GRID */}
+      <section className="section-padding" style={{ backgroundColor: '#f8fafc' }}>
         <div className="container">
           <SectionHeading
             badge="OUR SERVICES"
-            title="Comprehensive Education &amp; Career Services"
-            subtitle="From school coaching to corporate workforce training, we support your entire learning &amp; growth lifecycle."
+            title="End-to-End Education & Career Services"
+            subtitle="From school coaching to corporate workforce training — we support your entire learning and growth lifecycle."
           />
-
-          <div style={{
-            display: 'grid',
-            gridTemplateColumns: 'repeat(5, 1fr)',
-            gap: '20px'
-          }} className="responsive-5-col">
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(5, 1fr)', gap: '16px' }} className="responsive-5-col">
             {allServices.map((srv) => {
               const IconC = srv.icon;
               return (
-                <Card key={srv.id} style={{ padding: '24px 18px' }}>
-                  <div style={{
-                    width: '42px',
-                    height: '42px',
-                    borderRadius: '10px',
-                    backgroundColor: '#fef2f2',
-                    color: '#dc2626',
-                    display: 'flex',
-                    alignItems: 'center',
-                    justify: 'center',
-                    marginBottom: '14px'
-                  }}>
-                    <IconC size={20} />
-                  </div>
-                  <h4 style={{ fontSize: '1rem', fontWeight: 800, color: '#0f172a', marginBottom: '6px' }}>{srv.title}</h4>
-                  <p style={{ fontSize: '0.825rem', color: '#64748b', lineHeight: 1.5 }}>{srv.description}</p>
+                <Card key={srv.id} style={{ padding: '22px 18px' }}>
+                  <IconBox icon={IconC} color="accent" size={18} />
+                  <h4 style={{ fontSize: '0.9rem', fontWeight: 700, color: '#0f172a', margin: '12px 0 6px' }}>{srv.title}</h4>
+                  <p style={{ fontSize: '0.78rem', color: '#64748b', lineHeight: 1.55 }}>{srv.description}</p>
                 </Card>
               );
             })}
@@ -311,109 +318,93 @@ export default function HomePage({ onEnquire }) {
         </div>
       </section>
 
-      {/* PLACEMENT SECTION */}
+      <SectionDivider />
+
+      {/* 7. PLACEMENT BANNER */}
       <section className="section-padding" style={{ backgroundColor: '#ffffff' }}>
         <div className="container">
           <SectionHeading
             badge="PLACEMENT ASSISTANCE"
             title="Training That Connects You to Opportunities"
-            subtitle="Career support, resume optimization, and placement assistance for candidates across IT and Non-IT domains."
+            subtitle="Career support, resume optimisation, and placement assistance for candidates across IT and Non-IT domains."
           />
 
-          <div style={{
-            display: 'grid',
-            gridTemplateColumns: 'repeat(4, 1fr)',
-            gap: '20px',
-            marginBottom: '40px'
-          }} className="responsive-4-col">
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: '20px', marginBottom: '40px' }} className="responsive-4-col">
             {placementHighlights.map((p) => (
               <Card key={p.title}>
-                <div style={{
-                  width: '38px',
-                  height: '38px',
-                  borderRadius: '10px',
-                  backgroundColor: '#eff6ff',
-                  color: '#2563eb',
-                  display: 'flex',
-                  alignItems: 'center',
-                  justify: 'center',
-                  marginBottom: '14px'
-                }}>
-                  <Target size={20} />
-                </div>
-                <h4 style={{ fontSize: '1.05rem', fontWeight: 800, color: '#0f172a', marginBottom: '8px' }}>{p.title}</h4>
-                <p style={{ fontSize: '0.85rem', color: '#64748b', lineHeight: 1.5 }}>{p.description}</p>
+                <IconBox icon={Target} color="blue" />
+                <h4 style={{ fontSize: '0.95rem', fontWeight: 700, color: '#0f172a', margin: '14px 0 8px', letterSpacing: '-0.02em' }}>{p.title}</h4>
+                <p style={{ fontSize: '0.82rem', color: '#64748b', lineHeight: 1.55 }}>{p.description}</p>
               </Card>
             ))}
           </div>
 
+          {/* CTA Banner */}
           <div style={{
-            backgroundColor: '#0f172a',
-            borderRadius: '20px',
-            padding: '32px 40px',
-            color: 'white',
-            display: 'flex',
-            alignItems: 'center',
-            justify: 'space-between',
-            flexWrap: 'wrap',
-            gap: '20px'
+            background: 'linear-gradient(135deg, #0f172a 0%, #1e293b 100%)',
+            borderRadius: '16px', padding: '36px 40px', color: 'white',
+            display: 'flex', alignItems: 'center', justifyContent: 'space-between',
+            flexWrap: 'wrap', gap: '20px'
           }}>
             <div>
-              <h3 style={{ fontSize: '1.35rem', fontWeight: 800, color: '#ffffff', marginBottom: '4px' }}>
+              <h3 style={{ fontSize: '1.2rem', fontWeight: 700, color: '#fff', marginBottom: '6px', letterSpacing: '-0.02em' }}>
                 Ready to Start Your Career Preparation?
               </h3>
-              <p style={{ fontSize: '0.9rem', color: '#94a3b8' }}>
-                Get in touch with our career support team to discuss training options and placement guidance.
+              <p style={{ fontSize: '0.875rem', color: '#64748b', margin: 0 }}>
+                Connect with our placement team to discuss training options and opportunities.
               </p>
             </div>
-            <Button variant="primary" onClick={onEnquire}>
-              Enquire For Placements
-            </Button>
+            <button
+              onClick={onEnquire}
+              style={{
+                display: 'inline-flex', alignItems: 'center', gap: '8px',
+                padding: '12px 26px', backgroundColor: '#dc2626', color: '#fff',
+                border: 'none', borderRadius: '10px', cursor: 'pointer',
+                fontSize: '0.9rem', fontWeight: 600, whiteSpace: 'nowrap',
+                boxShadow: '0 2px 10px rgba(220,38,38,0.4)',
+                transition: 'all 0.2s ease'
+              }}
+              onMouseEnter={e => { e.currentTarget.style.backgroundColor = '#b91c1c'; e.currentTarget.style.transform = 'translateY(-1px)'; }}
+              onMouseLeave={e => { e.currentTarget.style.backgroundColor = '#dc2626'; e.currentTarget.style.transform = ''; }}
+            >
+              Enquire for Placements <ArrowRight size={15} />
+            </button>
           </div>
         </div>
       </section>
 
-      {/* TESTIMONIALS */}
-      <section className="section-padding" style={{ backgroundColor: '#f8fafc', borderTop: '1px solid #e2e8f0' }}>
+      <SectionDivider />
+
+      {/* 8. TESTIMONIALS */}
+      <section className="section-padding" style={{ backgroundColor: '#f8fafc' }}>
         <div className="container">
           <SectionHeading
             badge="STUDENT FEEDBACK"
             title="What Our Students Say"
-            subtitle="Read feedback from students and professionals who trained with JK Educational Academy."
+            subtitle="Feedback from students and professionals who trained with JK Educational Academy."
           />
-
-          <div style={{
-            display: 'grid',
-            gridTemplateColumns: 'repeat(3, 1fr)',
-            gap: '24px'
-          }} className="responsive-3-col">
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '20px' }} className="responsive-3-col">
             {testimonials.map((t) => (
-              <Card key={t.id}>
-                <div style={{ display: 'flex', gap: '4px', color: '#f59e0b', marginBottom: '14px' }}>
+              <Card key={t.id} style={{ display: 'flex', flexDirection: 'column' }}>
+                <div style={{ display: 'flex', gap: '3px', marginBottom: '14px' }}>
                   {[...Array(5)].map((_, i) => (
-                    <Star key={i} size={16} style={{ fill: '#f59e0b' }} />
+                    <Star key={i} size={14} style={{ color: '#f59e0b', fill: '#f59e0b' }} />
                   ))}
                 </div>
-                <p style={{ fontSize: '0.9rem', color: '#334155', lineHeight: 1.6, fontStyle: 'italic', marginBottom: '20px' }}>
+                <p style={{ fontSize: '0.875rem', color: '#334155', lineHeight: 1.65, fontStyle: 'italic', flex: 1, marginBottom: '20px' }}>
                   "{t.content}"
                 </p>
                 <div style={{ borderTop: '1px solid #f1f5f9', paddingTop: '14px', display: 'flex', alignItems: 'center', gap: '10px' }}>
                   <div style={{
-                    width: '36px',
-                    height: '36px',
-                    borderRadius: '50%',
-                    backgroundColor: '#dc2626',
-                    color: 'white',
-                    fontWeight: 800,
-                    display: 'flex',
-                    alignItems: 'center',
-                    justify: 'center'
-                  }}>
-                    {t.name.charAt(0)}
-                  </div>
+                    width: '36px', height: '36px', borderRadius: '50%',
+                    background: 'linear-gradient(135deg, #dc2626, #b91c1c)',
+                    color: 'white', fontWeight: 800, fontSize: '0.9rem',
+                    display: 'flex', alignItems: 'center', justifyContent: 'center',
+                    flexShrink: 0
+                  }}>{t.name.charAt(0)}</div>
                   <div>
-                    <h4 style={{ fontSize: '0.95rem', fontWeight: 800, color: '#0f172a' }}>{t.name}</h4>
-                    <p style={{ fontSize: '0.7875rem', color: '#dc2626', fontWeight: 600 }}>{t.role}</p>
+                    <div style={{ fontSize: '0.875rem', fontWeight: 700, color: '#0f172a' }}>{t.name}</div>
+                    <div style={{ fontSize: '0.75rem', color: '#dc2626', fontWeight: 600 }}>{t.role}</div>
                   </div>
                 </div>
               </Card>
@@ -422,25 +413,8 @@ export default function HomePage({ onEnquire }) {
         </div>
       </section>
 
-      {/* FAQ SECTION */}
+      {/* 9. FAQ */}
       <FAQAccordion />
-
-      <style>{`
-        @media (max-width: 1024px) {
-          .responsive-5-col { grid-template-columns: repeat(3, 1fr) !important; }
-        }
-        @media (max-width: 900px) {
-          .responsive-3-col { grid-template-columns: repeat(2, 1fr) !important; }
-          .responsive-4-col { grid-template-columns: repeat(2, 1fr) !important; }
-          .responsive-2-col { grid-template-columns: 1fr !important; }
-        }
-        @media (max-width: 600px) {
-          .responsive-5-col { grid-template-columns: 1fr !important; }
-          .responsive-3-col { grid-template-columns: 1fr !important; }
-          .responsive-4-col { grid-template-columns: 1fr !important; }
-        }
-      `}</style>
-
     </div>
   );
 }

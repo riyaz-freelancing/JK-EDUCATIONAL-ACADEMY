@@ -1,239 +1,209 @@
 import React, { useState } from 'react';
-import { X, CheckCircle, Send, PhoneCall } from 'lucide-react';
-import Button from './common/Button';
+import { X, Send, CheckCircle2, ShieldCheck } from 'lucide-react';
 
 export default function EnquiryModal({ isOpen, onClose }) {
-  if (!isOpen) return null;
-
   const [formData, setFormData] = useState({
     name: '',
-    email: '',
     phone: '',
-    program: 'Academic Tuition (Inter / Degree)',
+    email: '',
+    course: 'Intermediate Tuitions (TS & AP)',
     message: ''
   });
+
   const [submitted, setSubmitted] = useState(false);
+
+  if (!isOpen) return null;
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (!formData.name || !formData.phone) {
-      alert('Please fill out your name and phone number.');
-      return;
-    }
     setSubmitted(true);
+  };
+
+  const handleClose = () => {
+    setSubmitted(false);
+    onClose();
   };
 
   return (
     <div style={{
       position: 'fixed',
-      inset: 0,
+      top: 0,
+      left: 0,
+      right: 0,
+      bottom: 0,
       zIndex: 2000,
-      backgroundColor: 'rgba(15, 23, 42, 0.7)',
-      backdropFilter: 'blur(6px)',
+      backgroundColor: 'rgba(15, 23, 42, 0.6)',
+      backdropFilter: 'blur(8px)',
       display: 'flex',
       alignItems: 'center',
       justify: 'center',
       padding: '20px'
     }}>
       <div style={{
-        backgroundColor: '#ffffff',
-        borderRadius: '24px',
-        maxWidth: '560px',
-        width: '100%',
-        boxShadow: '0 25px 50px -12px rgba(0, 0, 0, 0.25)',
-        border: '1px solid #e2e8f0',
-        padding: '36px',
         position: 'relative',
-        textAlign: 'left'
+        width: '100%',
+        maxWidth: '520px',
+        backgroundColor: '#ffffff',
+        border: '1px solid #cbd5e1',
+        borderRadius: '24px',
+        padding: '32px',
+        boxShadow: '0 25px 60px rgba(15, 23, 42, 0.2)',
+        animation: 'modalFadeIn 0.25s ease'
       }}>
+        {/* Close Button */}
         <button
-          onClick={onClose}
+          onClick={handleClose}
           style={{
             position: 'absolute',
             top: '20px',
             right: '20px',
+            background: '#f1f5f9',
+            border: '1px solid #cbd5e1',
+            color: '#0f172a',
             width: '36px',
             height: '36px',
             borderRadius: '50%',
-            backgroundColor: '#f1f5f9',
-            color: '#475569',
             display: 'flex',
             alignItems: 'center',
             justify: 'center',
-            border: 'none',
             cursor: 'pointer'
           }}
         >
-          <X size={20} />
+          <X size={18} />
         </button>
 
         {submitted ? (
-          <div style={{ textAlign: 'center', padding: '30px 10px' }}>
+          <div style={{ textAlign: 'center', padding: '20px 0' }}>
             <div style={{
-              width: '60px',
-              height: '60px',
-              borderRadius: '50%',
-              backgroundColor: '#ecfdf5',
-              color: '#10b981',
-              display: 'flex',
-              alignItems: 'center',
-              justify: 'center',
-              margin: '0 auto 18px auto'
+              width: '54px', height: '54px', borderRadius: '50%',
+              background: '#2563eb', color: '#fff',
+              display: 'flex', alignItems: 'center', justifyContent: 'center',
+              margin: '0 auto 16px', boxShadow: '0 4px 15px rgba(37, 99, 235, 0.3)'
             }}>
-              <CheckCircle size={36} />
+              <CheckCircle2 size={30} />
             </div>
-            <h3 style={{ fontSize: '1.5rem', fontWeight: 800, color: '#0f172a', marginBottom: '10px' }}>
-              Enquiry Submitted Successfully!
+            <h3 style={{ fontSize: '1.4rem', fontWeight: 800, color: '#0f172a', marginBottom: '8px' }}>
+              Enquiry Received!
             </h3>
-            <p style={{ color: '#475569', fontSize: '0.95rem', lineHeight: 1.6, marginBottom: '24px' }}>
-              Thank you, <strong>{formData.name}</strong>. Our educational counselor will get in touch with you shortly at <strong>{formData.phone}</strong>.
+            <p style={{ color: '#475569', fontSize: '0.88rem', marginBottom: '24px' }}>
+              Thank you, {formData.name || 'Student'}! Our team will contact you shortly to provide batch details & fee structure.
             </p>
-            <Button variant="primary" onClick={onClose}>
-              Done &amp; Close
-            </Button>
+            <button onClick={handleClose} className="btn-blue-light" style={{ width: '100%', justifyContent: 'center' }}>
+              Close Window
+            </button>
           </div>
         ) : (
-          <form onSubmit={handleSubmit}>
-            <div style={{
-              display: 'inline-block',
-              padding: '4px 12px',
-              borderRadius: '9999px',
-              backgroundColor: '#fef2f2',
-              color: '#dc2626',
-              fontSize: '0.75rem',
-              fontWeight: 800,
-              textTransform: 'uppercase',
-              marginBottom: '12px'
-            }}>
+          <div>
+            <div className="light-pill" style={{ marginBottom: '10px' }}>
+              <span className="light-pill-dot"></span>
               QUICK ADMISSION ENQUIRY
             </div>
-            <h3 style={{ fontSize: '1.6rem', fontWeight: 800, color: '#0f172a', marginBottom: '6px' }}>
-              Enquire Now
+
+            <h3 style={{ fontSize: '1.4rem', fontWeight: 800, color: '#0f172a', marginBottom: '6px' }}>
+              Book Free Counselling Session
             </h3>
-            <p style={{ fontSize: '0.875rem', color: '#64748b', marginBottom: '24px' }}>
-              Speak with our senior counselor to choose the right academic stream or career training program.
+            <p style={{ fontSize: '0.84rem', color: '#64748b', marginBottom: '20px' }}>
+              Fill in your details below to get instant course info & schedule a 1-on-1 interaction.
             </p>
 
-            <div style={{ display: 'flex', flexDirection: 'column', gap: '14px' }}>
+            <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '14px' }}>
               <div>
-                <label style={{ display: 'block', fontSize: '0.8rem', fontWeight: 700, color: '#334155', marginBottom: '4px' }}>
-                  FULL NAME *
-                </label>
+                <label style={labelStyle}>YOUR FULL NAME</label>
                 <input
                   type="text"
                   required
-                  placeholder="Enter your full name"
+                  placeholder="Enter full name"
                   value={formData.name}
                   onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                  style={{
-                    width: '100%',
-                    padding: '11px 14px',
-                    borderRadius: '8px',
-                    border: '1px solid #cbd5e1',
-                    fontSize: '0.9rem',
-                    outline: 'none'
-                  }}
+                  style={inputStyle}
                 />
               </div>
 
-              <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '12px' }}>
-                <div>
-                  <label style={{ display: 'block', fontSize: '0.8rem', fontWeight: 700, color: '#334155', marginBottom: '4px' }}>
-                    PHONE NUMBER *
-                  </label>
-                  <input
-                    type="tel"
-                    required
-                    placeholder="+91 98765 43210"
-                    value={formData.phone}
-                    onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-                    style={{
-                      width: '100%',
-                      padding: '11px 14px',
-                      borderRadius: '8px',
-                      border: '1px solid #cbd5e1',
-                      fontSize: '0.9rem',
-                      outline: 'none'
-                    }}
-                  />
-                </div>
-                <div>
-                  <label style={{ display: 'block', fontSize: '0.8rem', fontWeight: 700, color: '#334155', marginBottom: '4px' }}>
-                    EMAIL ADDRESS
-                  </label>
-                  <input
-                    type="email"
-                    placeholder="name@example.com"
-                    value={formData.email}
-                    onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                    style={{
-                      width: '100%',
-                      padding: '11px 14px',
-                      borderRadius: '8px',
-                      border: '1px solid #cbd5e1',
-                      fontSize: '0.9rem',
-                      outline: 'none'
-                    }}
-                  />
-                </div>
+              <div>
+                <label style={labelStyle}>PHONE / MOBILE NUMBER</label>
+                <input
+                  type="tel"
+                  required
+                  placeholder="+91 98765 43210"
+                  value={formData.phone}
+                  onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
+                  style={inputStyle}
+                />
               </div>
 
               <div>
-                <label style={{ display: 'block', fontSize: '0.8rem', fontWeight: 700, color: '#334155', marginBottom: '4px' }}>
-                  INTERESTED PROGRAM
-                </label>
+                <label style={labelStyle}>COURSE / STREAM OF INTEREST</label>
                 <select
-                  value={formData.program}
-                  onChange={(e) => setFormData({ ...formData, program: e.target.value })}
-                  style={{
-                    width: '100%',
-                    padding: '11px 14px',
-                    borderRadius: '8px',
-                    border: '1px solid #cbd5e1',
-                    fontSize: '0.9rem',
-                    backgroundColor: 'white',
-                    outline: 'none'
-                  }}
+                  value={formData.course}
+                  onChange={(e) => setFormData({ ...formData, course: e.target.value })}
+                  style={inputStyle}
                 >
-                  <option>Academic Tuition (Inter / B.Com / BBA / MBA)</option>
-                  <option>Full Stack IT Training & Placements</option>
-                  <option>Software Testing & QA Training</option>
-                  <option>SAP / Mainframe Training</option>
-                  <option>Non-IT Business Process Training</option>
-                  <option>Fresher Interview Preparation</option>
-                  <option>1-on-1 Career Counselling</option>
+                  <option style={optionStyle} value="Intermediate Tuitions (TS & AP)">Intermediate Tuitions (MPC / BiPC / CEC / MEC)</option>
+                  <option style={optionStyle} value="B.Com Degree Tuitions">B.Com Degree Tuitions (General, Comp, Honors)</option>
+                  <option style={optionStyle} value="Corporate Training (Finance & Accounting)">Corporate Training (Finance & Accounting)</option>
+                  <option style={optionStyle} value="Corporate Training (Human Resources)">Corporate Training (Human Resources)</option>
+                  <option style={optionStyle} value="IT & Tech Certifications">IT & Tech Certifications (Full Stack / Digital Marketing)</option>
+                  <option style={optionStyle} value="Specialized Non-IT Operations">Specialized Non-IT Operations</option>
+                  <option style={optionStyle} value="Basic Computer Tools">Basic Computer & Office Software Tools</option>
                 </select>
               </div>
 
               <div>
-                <label style={{ display: 'block', fontSize: '0.8rem', fontWeight: 700, color: '#334155', marginBottom: '4px' }}>
-                  YOUR MESSAGE / QUESTION
-                </label>
+                <label style={labelStyle}>SPECIFIC QUESTION OR TIMING PREFERENCE</label>
                 <textarea
-                  rows={3}
-                  placeholder="Tell us about your qualification or career goal..."
+                  rows={2}
+                  placeholder="e.g. Morning batch timing or syllabus query..."
                   value={formData.message}
                   onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-                  style={{
-                    width: '100%',
-                    padding: '11px 14px',
-                    borderRadius: '8px',
-                    border: '1px solid #cbd5e1',
-                    fontSize: '0.9rem',
-                    outline: 'none',
-                    resize: 'none'
-                  }}
+                  style={{ ...inputStyle, resize: 'vertical' }}
                 />
               </div>
 
-              <Button type="submit" variant="primary" icon={Send} fullWidth style={{ marginTop: '8px' }}>
-                Submit Enquiry
-              </Button>
-            </div>
-          </form>
-        )}
+              <button type="submit" className="btn-blue-light" style={{ width: '100%', justifyContent: 'center', marginTop: '6px', padding: '12px' }}>
+                <Send size={15} /> Submit Quick Enquiry
+              </button>
 
+              <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '6px', color: '#64748b', fontSize: '0.7rem' }}>
+                <ShieldCheck size={14} style={{ color: '#059669' }} />
+                <span>Your contact details are strictly confidential.</span>
+              </div>
+            </form>
+          </div>
+        )}
       </div>
+
+      <style>{`
+        @keyframes modalFadeIn {
+          from { opacity: 0; transform: scale(0.95); }
+          to { opacity: 1; transform: scale(1); }
+        }
+      `}</style>
     </div>
   );
 }
+
+const labelStyle = {
+  display: 'block',
+  fontSize: '0.68rem',
+  fontWeight: 700,
+  color: '#334155',
+  letterSpacing: '0.06em',
+  marginBottom: '4px'
+};
+
+const inputStyle = {
+  width: '100%',
+  padding: '10px 14px',
+  borderRadius: '8px',
+  background: '#ffffff',
+  border: '1px solid #cbd5e1',
+  color: '#0f172a',
+  fontSize: '0.85rem',
+  fontFamily: 'var(--font-body)',
+  outline: 'none'
+};
+
+const optionStyle = {
+  backgroundColor: '#ffffff',
+  color: '#0f172a'
+};
