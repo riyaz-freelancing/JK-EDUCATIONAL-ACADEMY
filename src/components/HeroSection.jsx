@@ -37,7 +37,7 @@ export default function HeroSection({ onEnquire }) {
         <div style={{ marginBottom: '24px', display: 'flex', justifyContent: 'center' }}>
           <div className="light-pill">
             <span className="light-pill-dot"></span>
-            REAL-TIME INTERMEDIATE & ACADEMIC COACHING | CORPORATE NON-IT & TECH TRAINING
+            LIST OF COURSES OFFERED BY JK EDUCATIONAL ACADEMY
           </div>
         </div>
 
@@ -51,8 +51,8 @@ export default function HeroSection({ onEnquire }) {
           margin: '0 auto 20px',
           lineHeight: 1.15
         }}>
-          Master the Future of <br className="desktop-only" />
-          <span className="gradient-text">Academia & Enterprise.</span>
+          Courses Offered by <br className="desktop-only" />
+          <span className="gradient-text">JK Educational Academy</span>
         </h1>
 
         {/* Hero Subtitle */}
@@ -63,7 +63,7 @@ export default function HeroSection({ onEnquire }) {
           margin: '0 auto 36px',
           lineHeight: 1.6
         }}>
-          Where Academic Excellence meets Corporate & Professional Competence. TS & AP Board tuitions, B.Com university support, non-IT corporate training, and tech certifications for seamless career acceleration.
+          Tuitions For Intermediate, Tuitions For B. Com, 2. Corporate Trainings (Non-IT), 3. IT Courses, 4. Other Domains (Non-IT), and 5. Basic Courses.
         </p>
 
         {/* Call-to-action buttons */}
@@ -76,11 +76,7 @@ export default function HeroSection({ onEnquire }) {
           marginBottom: '60px'
         }}>
           <button onClick={onEnquire} className="btn-blue-light">
-            Schedule Free Audit Session <ArrowRight size={17} />
-          </button>
-          
-          <button onClick={scrollToAssessment} className="btn-outline-light">
-            Book 1-on-1 Assessment Session
+            Enquire Now <ArrowRight size={17} />
           </button>
         </div>
 
@@ -139,28 +135,28 @@ export default function HeroSection({ onEnquire }) {
           }}>
             <div className="light-card" style={{ padding: '16px 20px', textAlign: 'center' }}>
               <div style={{ fontSize: '0.7rem', fontWeight: 700, color: '#2563eb', letterSpacing: '0.08em', textTransform: 'uppercase', marginBottom: '4px' }}>
-                ACADEMIA
+                TUITIONS
               </div>
               <div style={{ fontSize: '0.9rem', fontWeight: 700, color: '#0f172a' }}>
-                Intermediate & Degree Programs
+                Intermediate & B. Com
               </div>
             </div>
 
             <div className="light-card" style={{ padding: '16px 20px', textAlign: 'center', borderColor: '#2563eb' }}>
               <div style={{ fontSize: '0.7rem', fontWeight: 700, color: '#1d4ed8', letterSpacing: '0.08em', textTransform: 'uppercase', marginBottom: '4px' }}>
-                ENTERPRISE
+                CORPORATE
               </div>
               <div style={{ fontSize: '0.9rem', fontWeight: 700, color: '#0f172a' }}>
-                Professional & Corporate Training
+                2. Corporate Trainings (Non-IT)
               </div>
             </div>
 
             <div className="light-card" style={{ padding: '16px 20px', textAlign: 'center' }}>
               <div style={{ fontSize: '0.7rem', fontWeight: 700, color: '#4f46e5', letterSpacing: '0.08em', textTransform: 'uppercase', marginBottom: '4px' }}>
-                PRO SKILLS
+                DOMAINS & IT
               </div>
               <div style={{ fontSize: '0.9rem', fontWeight: 700, color: '#0f172a' }}>
-                IT & Enterprise Resources
+                IT, Non-IT & Basic Courses
               </div>
             </div>
           </div>
@@ -179,37 +175,37 @@ export default function HeroSection({ onEnquire }) {
         }}>
           <div>
             <div style={{ fontSize: '2.4rem', fontWeight: 800, color: '#2563eb', letterSpacing: '-0.04em', lineHeight: 1 }}>
-              98.4%
+              5
             </div>
             <div style={{ fontSize: '0.72rem', fontWeight: 700, color: '#64748b', letterSpacing: '0.08em', marginTop: '6px', textTransform: 'uppercase' }}>
-              PASS / SUCCESS RATE
+              INTERMEDIATE STREAMS
             </div>
           </div>
 
           <div>
             <div style={{ fontSize: '2.4rem', fontWeight: 800, color: '#0f172a', letterSpacing: '-0.04em', lineHeight: 1 }}>
-              4,200+
+              13
             </div>
             <div style={{ fontSize: '0.72rem', fontWeight: 700, color: '#64748b', letterSpacing: '0.08em', marginTop: '6px', textTransform: 'uppercase' }}>
-              STUDENTS & PROF. TRAINED
+              B. COM SUBJECTS
             </div>
           </div>
 
           <div>
             <div style={{ fontSize: '2.4rem', fontWeight: 800, color: '#4f46e5', letterSpacing: '-0.04em', lineHeight: 1 }}>
-              25 Max
+              12
             </div>
             <div style={{ fontSize: '0.72rem', fontWeight: 700, color: '#64748b', letterSpacing: '0.08em', marginTop: '6px', textTransform: 'uppercase' }}>
-              SEAT BATCH SIZE FOR FOCUS
+              CORPORATE NON-IT COURSES
             </div>
           </div>
 
           <div>
             <div style={{ fontSize: '2.4rem', fontWeight: 800, color: '#dc2626', letterSpacing: '-0.04em', lineHeight: 1 }}>
-              15+ Yrs
+              13
             </div>
             <div style={{ fontSize: '0.72rem', fontWeight: 700, color: '#64748b', letterSpacing: '0.08em', marginTop: '6px', textTransform: 'uppercase' }}>
-              EXCELLENCE AND FACULTY EXPERIENCE
+              IT, NON-IT & BASIC COURSES
             </div>
           </div>
         </div>

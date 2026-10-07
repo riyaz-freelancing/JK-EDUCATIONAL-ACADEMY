@@ -1,17 +1,16 @@
 import React from 'react';
 import SectionHeading from '../components/common/SectionHeading';
 import Card from '../components/common/Card';
-import Button from '../components/common/Button';
 import { aboutStats } from '../data/academyData';
-import { Users, Award, CheckCircle, Sparkles, BookOpen, Target, ArrowRight, PhoneCall } from 'lucide-react';
+import { Users, Award, CheckCircle, Sparkles, BookOpen, Target, PhoneCall } from 'lucide-react';
 
 const values = [
-  { icon: Users, title: 'Experienced Faculty', desc: 'Over 10 years of subject matter expertise and a proven teaching record across academic and corporate training.' },
-  { icon: Target, title: 'Student-Focused Learning', desc: 'Small batches ensure individual attention and customised pacing for each student\'s unique needs.' },
-  { icon: BookOpen, title: 'Practical & Conceptual', desc: 'Emphasising core understanding through practical exercises, mock assessments, and application-based learning.' },
-  { icon: Sparkles, title: 'Career-Oriented Training', desc: 'Curriculum built around modern corporate expectations across IT, Non-IT, Finance, and HR domains.' },
-  { icon: CheckCircle, title: 'Personal Mentorship', desc: 'One-to-one career counselling to guide stream selection, subject challenges, and interview readiness.' },
-  { icon: Award, title: 'Progress Tracking', desc: 'Regular feedback sessions, parent updates, and mock test evaluations to guarantee measurable improvement.' },
+  { icon: Users, title: 'Experienced Faculty', desc: 'Subject matter expertise across academic tuitions and corporate training.' },
+  { icon: Target, title: 'Student-Focused Learning', desc: 'Focused learning environment and customised pacing for each student.' },
+  { icon: BookOpen, title: 'Practical & Conceptual', desc: 'Emphasising core understanding through application-based learning.' },
+  { icon: Sparkles, title: 'Career-Oriented Training', desc: 'Training built around corporate expectations across IT, Non-IT, Finance, and HR domains.' },
+  { icon: CheckCircle, title: 'Personal Mentorship', desc: 'One-to-one guidance for stream selection and course support.' },
+  { icon: Award, title: 'Progress Tracking', desc: 'Regular evaluation to guarantee measurable improvement.' },
 ];
 
 export default function AboutPage({ onEnquire }) {
@@ -31,7 +30,7 @@ export default function AboutPage({ onEnquire }) {
             About JK Educational Academy
           </h1>
           <p style={{ fontSize: '1.05rem', color: '#64748b', lineHeight: 1.65, maxWidth: '560px' }}>
-            Dedicated to student success through quality academic tuition, professional corporate training, and personalised career mentorship.
+            Dedicated to student success through quality academic tuition and corporate training.
           </p>
         </div>
       </section>
@@ -43,15 +42,15 @@ export default function AboutPage({ onEnquire }) {
             <div>
               <SectionHeading
                 badge="ACADEMY VISION"
-                title="Empowering Students & Professionals Since 10+ Years"
-                subtitle="JK Educational Academy was founded with a single mission: to bridge academic learning with real-world corporate readiness."
+                title="Empowering Students & Professionals"
+                subtitle="JK Educational Academy provides structured coaching aligned with academic and corporate demands."
                 align="left"
               />
               <p style={{ fontSize: '0.95rem', color: '#475569', lineHeight: 1.7, marginBottom: '18px' }}>
-                With over a decade of dedicated experience, our faculty delivers high-impact coaching for Intermediate (MPC, BiPC, CEC, MEC, AEC), Undergraduate (B.Com, BBA), and Postgraduate (M.Com, MBA) courses.
+                Our faculty delivers high-impact coaching for Tuitions For Intermediate (MPC, BiPC, CEC, MEC, AEC) and Tuitions For B. Com (all 13 subjects).
               </p>
               <p style={{ fontSize: '0.9rem', color: '#64748b', lineHeight: 1.7, marginBottom: '32px' }}>
-                Recognising the evolving needs of the corporate job market, we expanded to include IT training (Full Stack, Testing, SAP, Mainframe) and Non-IT business process training — equipping candidates with market-ready skills and placement assistance.
+                We also offer 2. Corporate Trainings (Non-IT) in Finance Domain and Human Resource Domain, 3. IT Courses, 4. Other Domains (Non-IT), and 5. Basic Courses.
               </p>
               <button
                 onClick={onEnquire}
@@ -63,8 +62,6 @@ export default function AboutPage({ onEnquire }) {
                   boxShadow: '0 2px 10px rgba(220,38,38,0.3)',
                   transition: 'all 0.2s ease'
                 }}
-                onMouseEnter={e => { e.currentTarget.style.backgroundColor = '#b91c1c'; e.currentTarget.style.transform = 'translateY(-1px)'; }}
-                onMouseLeave={e => { e.currentTarget.style.backgroundColor = '#dc2626'; e.currentTarget.style.transform = ''; }}
               >
                 <PhoneCall size={16} /> Talk to Our Team
               </button>
@@ -88,7 +85,7 @@ export default function AboutPage({ onEnquire }) {
           <SectionHeading
             badge="OUR VALUES"
             title="What Defines Our Academy"
-            subtitle="The principles that guide our teaching, training, and career mentorship every single day."
+            subtitle="The principles that guide our teaching and training."
           />
 
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '20px' }} className="responsive-3-col">
@@ -103,52 +100,19 @@ export default function AboutPage({ onEnquire }) {
                   }}>
                     <IconC size={20} />
                   </div>
-                  <h4 style={{ fontSize: '1rem', fontWeight: 700, color: '#0f172a', marginBottom: '8px', letterSpacing: '-0.02em' }}>{v.title}</h4>
-                  <p style={{ fontSize: '0.85rem', color: '#64748b', lineHeight: 1.6 }}>{v.desc}</p>
+                  <h4 style={{ fontSize: '1rem', fontWeight: 700, color: '#0f172a', marginBottom: '8px' }}>{v.title}</h4>
+                  <p style={{ fontSize: '0.84rem', color: '#64748b', lineHeight: 1.6 }}>{v.desc}</p>
                 </Card>
               );
             })}
           </div>
-        </div>
-      </section>
 
-      {/* Why Choose Us Banner */}
-      <section style={{ backgroundColor: '#0f172a', padding: '64px 0' }}>
-        <div className="container">
-          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '48px', alignItems: 'center' }} className="responsive-2-col">
-            <div>
-              <div style={{ fontSize: '0.7rem', fontWeight: 700, color: '#dc2626', letterSpacing: '0.08em', textTransform: 'uppercase', marginBottom: '12px' }}>WHY CHOOSE JK ACADEMY</div>
-              <h2 style={{ fontSize: 'clamp(1.5rem, 3vw, 2rem)', fontWeight: 800, color: '#fff', letterSpacing: '-0.03em', marginBottom: '16px' }}>
-                A Complete Learning Ecosystem Under One Roof
-              </h2>
-              <p style={{ fontSize: '0.925rem', color: '#64748b', lineHeight: 1.7 }}>
-                From Intermediate tuitions to MNC placement assistance, JK Academy is your all-in-one partner for academic success and professional growth.
-              </p>
-            </div>
-            <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
-              {['Academic + Corporate Training under one roof', '10+ years of proven faculty excellence', 'Small batches with individual attention', 'End-to-end placement support for all domains'].map((item) => (
-                <div key={item} style={{
-                  display: 'flex', alignItems: 'center', gap: '12px',
-                  backgroundColor: '#1e293b', padding: '14px 18px',
-                  borderRadius: '10px', border: '1px solid #334155',
-                  fontSize: '0.875rem', fontWeight: 600, color: '#e2e8f0'
-                }}>
-                  <CheckCircle size={16} style={{ color: '#4ade80', flexShrink: 0 }} />
-                  {item}
-                </div>
-              ))}
-            </div>
-          </div>
         </div>
       </section>
 
       <style>{`
         @media (max-width: 900px) {
-          .responsive-2-col { grid-template-columns: 1fr !important; }
-          .responsive-3-col { grid-template-columns: repeat(2, 1fr) !important; }
-        }
-        @media (max-width: 600px) {
-          .responsive-3-col { grid-template-columns: 1fr !important; }
+          .responsive-2-col, .responsive-3-col { grid-template-columns: 1fr !important; }
         }
       `}</style>
     </div>

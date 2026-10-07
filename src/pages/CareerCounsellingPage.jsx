@@ -1,6 +1,5 @@
 import React from 'react';
 import SectionHeading from '../components/common/SectionHeading';
-import Card from '../components/common/Card';
 import { counsellingFeatures } from '../data/academyData';
 import { Compass, CheckCircle, PhoneCall, Target, BookOpen, Briefcase } from 'lucide-react';
 
@@ -8,17 +7,17 @@ const pillars = [
   {
     icon: BookOpen,
     title: 'Academic Alignment',
-    desc: 'Identify whether Intermediate Civics, Eco, Commerce, or B.Com/BBA/MBA fits your career goals and strengths.'
+    desc: 'Identify whether Tuitions For Intermediate (MPC, BiPC, CEC, MEC, AEC) or Tuitions For B. Com fits your goals.'
   },
   {
     icon: Target,
     title: 'Domain Training Choice',
-    desc: 'Evaluate your interest in Full Stack Development, QA Testing, SAP, Digital Marketing, or Non-IT Operations.'
+    desc: 'Evaluate your interest in Corporate Trainings (Non-IT), 3. IT Courses, 4. Other Domains (Non-IT), or 5. Basic Courses.'
   },
   {
     icon: Briefcase,
-    title: 'Interview & Placement Prep',
-    desc: 'Understand corporate expectations, resume formatting, aptitude training, and mock interview techniques.'
+    title: 'Course Counselling',
+    desc: 'Understand program structure, course options, and learning outcomes.'
   },
 ];
 
@@ -37,7 +36,7 @@ export default function CareerCounsellingPage({ onEnquire }) {
             Your Career. Your Direction. Our Guidance.
           </h1>
           <p style={{ fontSize: '1rem', color: '#64748b', lineHeight: 1.65, maxWidth: '560px' }}>
-            Get personalised career guidance to understand your strengths, explore opportunities, and choose the right learning path.
+            Get guidance on course offerings at JK Educational Academy.
           </p>
         </div>
       </section>
@@ -49,13 +48,13 @@ export default function CareerCounsellingPage({ onEnquire }) {
           <div style={{ display: 'grid', gridTemplateColumns: '1.2fr 1fr', gap: '56px', alignItems: 'center', marginBottom: '72px' }} className="responsive-2-col">
             <div>
               <SectionHeading
-                badge="1-ON-1 COUNSELLING"
-                title="Personalised Mentorship & Career Roadmaps"
-                subtitle="We help students, freshers, and experienced professionals navigate education streams and career choices with confidence."
+                badge="COURSE GUIDANCE"
+                title="Personalised Mentorship & Course Guidance"
+                subtitle="We help students explore courses and learning paths with confidence."
                 align="left"
               />
               <p style={{ fontSize: '0.925rem', color: '#475569', lineHeight: 1.7, marginBottom: '32px' }}>
-                Choosing the right academic stream or transitioning into a professional corporate role can feel overwhelming. At JK Educational Academy, our experienced advisors provide structured, 1-on-1 counselling tailored to your individual background, skills, and aspirations.
+                Choosing the right course stream is essential. At JK Educational Academy, our experienced advisors provide structured guidance on all our course offerings.
               </p>
               <button
                 onClick={onEnquire}
@@ -67,11 +66,9 @@ export default function CareerCounsellingPage({ onEnquire }) {
                   boxShadow: '0 2px 10px rgba(220,38,38,0.3)',
                   transition: 'all 0.2s ease'
                 }}
-                onMouseEnter={e => { e.currentTarget.style.backgroundColor = '#b91c1c'; e.currentTarget.style.transform = 'translateY(-1px)'; }}
-                onMouseLeave={e => { e.currentTarget.style.backgroundColor = '#dc2626'; e.currentTarget.style.transform = ''; }}
               >
                 <PhoneCall size={16} />
-                Book a Counselling Session
+                Enquire Now
               </button>
             </div>
 
@@ -81,7 +78,7 @@ export default function CareerCounsellingPage({ onEnquire }) {
               border: '1px solid #e8edf3'
             }}>
               <h3 style={{ fontSize: '1.1rem', fontWeight: 700, color: '#0f172a', marginBottom: '20px', letterSpacing: '-0.02em' }}>
-                What Our Counselling Covers
+                What Our Guidance Covers
               </h3>
               <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
                 {counsellingFeatures.map((item) => (
@@ -99,67 +96,31 @@ export default function CareerCounsellingPage({ onEnquire }) {
             </div>
           </div>
 
-          {/* How Counselling Helps */}
-          <SectionHeading
-            badge="OUR APPROACH"
-            title="How Our Counselling Helps You Succeed"
-            subtitle="Clear, practical steps to align your education with real-world corporate opportunities."
-          />
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '20px', marginBottom: '60px' }} className="responsive-3-col">
+          {/* Pillars Grid */}
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '20px' }} className="responsive-3-col">
             {pillars.map((p) => {
               const IconC = p.icon;
               return (
-                <Card key={p.title}>
-                  <div style={{ width: '42px', height: '42px', borderRadius: '10px', backgroundColor: '#fef2f2', color: '#dc2626', display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: '16px' }}>
+                <div key={p.title} style={{
+                  padding: '24px', backgroundColor: '#fff', borderRadius: '12px',
+                  border: '1px solid #e2e8f0'
+                }}>
+                  <div style={{ width: '40px', height: '40px', borderRadius: '10px', backgroundColor: '#eff6ff', color: '#2563eb', display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: '16px' }}>
                     <IconC size={20} />
                   </div>
-                  <h4 style={{ fontSize: '1rem', fontWeight: 700, color: '#0f172a', marginBottom: '8px', letterSpacing: '-0.02em' }}>{p.title}</h4>
-                  <p style={{ fontSize: '0.85rem', color: '#64748b', lineHeight: 1.6 }}>{p.desc}</p>
-                </Card>
+                  <h4 style={{ fontSize: '1rem', fontWeight: 700, color: '#0f172a', marginBottom: '8px' }}>{p.title}</h4>
+                  <p style={{ fontSize: '0.84rem', color: '#64748b', lineHeight: 1.6 }}>{p.desc}</p>
+                </div>
               );
             })}
           </div>
 
-          {/* Bottom CTA */}
-          <div style={{
-            background: 'linear-gradient(135deg, #0f172a 0%, #1e293b 100%)',
-            borderRadius: '16px', padding: '40px',
-            display: 'flex', alignItems: 'center', justifyContent: 'space-between',
-            flexWrap: 'wrap', gap: '24px'
-          }}>
-            <div>
-              <div style={{ fontSize: '0.7rem', fontWeight: 700, color: '#dc2626', letterSpacing: '0.08em', textTransform: 'uppercase', marginBottom: '10px' }}>FREE FIRST SESSION</div>
-              <h3 style={{ fontSize: '1.35rem', fontWeight: 700, color: '#fff', marginBottom: '8px', letterSpacing: '-0.025em' }}>
-                Not Sure Which Path to Choose?
-              </h3>
-              <p style={{ fontSize: '0.875rem', color: '#64748b', maxWidth: '480px', lineHeight: 1.6 }}>
-                Book a free 30-minute career assessment session with one of our experienced advisors. We'll help you identify the right stream, domain, and training path.
-              </p>
-            </div>
-            <button
-              onClick={onEnquire}
-              style={{
-                display: 'inline-flex', alignItems: 'center', gap: '8px',
-                padding: '13px 28px', backgroundColor: '#dc2626', color: '#fff',
-                border: 'none', borderRadius: '10px', cursor: 'pointer',
-                fontSize: '0.9rem', fontWeight: 700, whiteSpace: 'nowrap',
-                boxShadow: '0 2px 12px rgba(220,38,38,0.4)',
-                transition: 'all 0.2s ease'
-              }}
-              onMouseEnter={e => { e.currentTarget.style.backgroundColor = '#b91c1c'; e.currentTarget.style.transform = 'translateY(-1px)'; }}
-              onMouseLeave={e => { e.currentTarget.style.backgroundColor = '#dc2626'; e.currentTarget.style.transform = ''; }}
-            >
-              <PhoneCall size={16} />
-              Book Free Session
-            </button>
-          </div>
         </div>
       </section>
 
       <style>{`
         @media (max-width: 900px) {
-          .responsive-2-col { grid-template-columns: 1fr !important; }
-          .responsive-3-col { grid-template-columns: 1fr !important; }
+          .responsive-2-col, .responsive-3-col { grid-template-columns: 1fr !important; }
         }
       `}</style>
     </div>

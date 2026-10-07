@@ -10,7 +10,7 @@ const contactItems = [
   {
     icon: Phone,
     label: 'Phone Helpline',
-    value: '+91 98765 43210  /  +91 98765 43211'
+    value: '+91 9177893905'
   },
   {
     icon: Mail,
@@ -34,7 +34,7 @@ const inputStyle = {
 
 export default function ContactPage() {
   const [formData, setFormData] = useState({
-    name: '', email: '', phone: '', program: 'Intermediate Tuition (Civics / Eco / Commerce)', message: ''
+    name: '', email: '', phone: '', program: 'Tuitions For Intermediate', message: ''
   });
   const [submitted, setSubmitted] = useState(false);
   const [focused, setFocused] = useState('');
@@ -71,7 +71,7 @@ export default function ContactPage() {
             Let's Build Your Next Step Together
           </h1>
           <p style={{ fontSize: '1rem', color: '#64748b', lineHeight: 1.65, maxWidth: '520px' }}>
-            Reach out for admissions, corporate training details, or 1-on-1 career counselling.
+            Reach out for admissions or course details for JK Educational Academy.
           </p>
         </div>
       </section>
@@ -100,33 +100,25 @@ export default function ContactPage() {
                         backgroundColor: '#fef2f2', color: '#dc2626',
                         display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0
                       }}>
-                        <IconC size={18} />
+                        <IconC size={20} />
                       </div>
                       <div>
-                        <div style={{ fontSize: '0.8rem', fontWeight: 700, color: '#0f172a', marginBottom: '3px', letterSpacing: '-0.01em' }}>{item.label}</div>
-                        <div style={{ fontSize: '0.875rem', color: '#64748b', lineHeight: 1.55 }}>{item.value}</div>
+                        <div style={{ fontSize: '0.75rem', fontWeight: 700, color: '#94a3b8', textTransform: 'uppercase', letterSpacing: '0.04em', marginBottom: '2px' }}>{item.label}</div>
+                        <div style={{ fontSize: '0.9rem', fontWeight: 600, color: '#0f172a', lineHeight: 1.5 }}>{item.value}</div>
                       </div>
                     </div>
                   );
                 })}
               </div>
-
-              <div style={{
-                backgroundColor: '#fffbeb', borderRadius: '12px', padding: '16px 18px',
-                border: '1px solid #fde68a', fontSize: '0.85rem', color: '#92400e', lineHeight: 1.6
-              }}>
-                <strong>Walk-in Counselling:</strong> You are welcome to visit our centre directly for batch schedules, course brochures, and counsellor interactions.
-              </div>
             </div>
 
-            {/* Right: Form */}
+            {/* Right: Contact Form */}
             <div style={{
-              backgroundColor: '#ffffff', borderRadius: '16px', padding: '36px',
-              border: '1px solid #e8edf3',
-              boxShadow: '0 4px 24px rgba(15,23,42,0.06)'
+              backgroundColor: '#ffffff', borderRadius: '16px', border: '1px solid #e2e8f0',
+              padding: '36px', boxShadow: '0 4px 20px rgba(15,23,42,0.05)'
             }}>
               {submitted ? (
-                <div style={{ textAlign: 'center', padding: '32px 0' }}>
+                <div style={{ textAlign: 'center', padding: '24px 0' }}>
                   <div style={{
                     width: '60px', height: '60px', borderRadius: '50%',
                     backgroundColor: '#f0fdf4', color: '#16a34a',
@@ -148,8 +140,6 @@ export default function ContactPage() {
                       border: '1.5px solid #e2e8f0', borderRadius: '8px', cursor: 'pointer',
                       fontSize: '0.875rem', fontWeight: 600, transition: 'all 0.2s'
                     }}
-                    onMouseEnter={e => e.currentTarget.style.backgroundColor = '#f1f5f9'}
-                    onMouseLeave={e => e.currentTarget.style.backgroundColor = '#f8fafc'}
                   >
                     Send Another Message
                   </button>
@@ -198,23 +188,19 @@ export default function ContactPage() {
                       </Field>
                     </div>
 
-                    <Field label="Interested Program">
+                    <Field label="Interested Category">
                       <select
                         value={formData.program}
                         onChange={e => setFormData({ ...formData, program: e.target.value })}
                         style={{ ...inputStyle, cursor: 'pointer' }}
                       >
-                        <option>Intermediate Tuition (Civics / Eco / Commerce)</option>
-                        <option>Intermediate Tuition (MPC / BiPC / AEC)</option>
-                        <option>CBSE English (1st & 2nd Year)</option>
-                        <option>Undergraduate Tuition (B.Com / BBA)</option>
-                        <option>Postgraduate Tuition (M.Com / MBA)</option>
-                        <option>IT Corporate Training (Full Stack / Digital Marketing)</option>
-                        <option>Finance Domain Training (R2R / P2P / O2C / Payroll)</option>
-                        <option>HR Domain Training</option>
-                        <option>Basic Computer Courses (Excel / Tally / DCA)</option>
-                        <option>Fresher Interview Preparation</option>
-                        <option>One-to-One Career Counselling</option>
+                        <option>Tuitions For Intermediate</option>
+                        <option>Tuitions For B. Com</option>
+                        <option>2. Corporate Trainings (Non-IT) - Finance Domain</option>
+                        <option>2. Corporate Trainings (Non-IT) - Human Resource Domain</option>
+                        <option>3. IT Courses</option>
+                        <option>4. Other Domains (Non-IT)</option>
+                        <option>5. Basic Courses</option>
                       </select>
                     </Field>
 
@@ -239,8 +225,6 @@ export default function ContactPage() {
                         boxShadow: '0 2px 10px rgba(220,38,38,0.3)', marginTop: '4px',
                         transition: 'all 0.2s ease'
                       }}
-                      onMouseEnter={e => { e.currentTarget.style.backgroundColor = '#b91c1c'; e.currentTarget.style.transform = 'translateY(-1px)'; }}
-                      onMouseLeave={e => { e.currentTarget.style.backgroundColor = '#dc2626'; e.currentTarget.style.transform = ''; }}
                     >
                       <Send size={16} />
                       Submit Enquiry

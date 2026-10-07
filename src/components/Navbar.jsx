@@ -50,19 +50,19 @@ export default function Navbar({ onEnquire }) {
               JK ACADEMY<span style={{ color: '#2563eb', fontSize: '1.2rem' }}>.</span>
             </div>
             <div style={{ fontSize: '0.62rem', fontWeight: 700, color: '#64748b', letterSpacing: '0.1em', textTransform: 'uppercase', marginTop: '2px' }}>
-              Academia & Enterprise
+              Educational Academy
             </div>
           </div>
         </a>
 
         {/* Desktop Navigation Links */}
-        <nav className="desktop-only" style={{ display: 'flex', alignItems: 'center', gap: '22px' }}>
+        <nav className="desktop-only" style={{ display: 'flex', alignItems: 'center', gap: '18px' }}>
           <button onClick={() => scrollToSection('intermediate')} style={navLinkStyle}>Intermediate</button>
-          <button onClick={() => scrollToSection('degree')} style={navLinkStyle}>B.Com</button>
-          <button onClick={() => scrollToSection('corporate')} style={navLinkStyle}>Corporate</button>
-          <button onClick={() => scrollToSection('tech')} style={navLinkStyle}>IT Certs</button>
-          <button onClick={() => scrollToSection('basic')} style={navLinkStyle}>Basic Tools</button>
-          <button onClick={() => scrollToSection('assessment')} style={navLinkStyle}>Assessment</button>
+          <button onClick={() => scrollToSection('degree')} style={navLinkStyle}>B. Com</button>
+          <button onClick={() => scrollToSection('corporate')} style={navLinkStyle}>Corporate Trainings</button>
+          <button onClick={() => scrollToSection('tech')} style={navLinkStyle}>IT Courses</button>
+          <button onClick={() => scrollToSection('specialized')} style={navLinkStyle}>Other Domains</button>
+          <button onClick={() => scrollToSection('basic')} style={navLinkStyle}>Basic Courses</button>
         </nav>
 
         {/* Right Info & CTA */}
@@ -84,8 +84,7 @@ export default function Navbar({ onEnquire }) {
           {/* Consultation CTA */}
           <button onClick={onEnquire} className="btn-blue-light" style={{ padding: '9px 18px', fontSize: '0.85rem' }}>
             <Calendar size={15} />
-            <span className="desktop-only">Book Assessment</span>
-            <span className="mobile-only">Enquire</span>
+            <span>Enquire</span>
           </button>
 
           {/* Mobile Hamburger Toggle */}
@@ -117,13 +116,12 @@ export default function Navbar({ onEnquire }) {
           gap: '12px',
           boxShadow: '0 10px 30px rgba(15, 23, 42, 0.08)'
         }}>
-          <button onClick={() => scrollToSection('intermediate')} style={mobileNavLinkStyle}>Intermediate (TS & AP Board)</button>
-          <button onClick={() => scrollToSection('degree')} style={mobileNavLinkStyle}>Tuitions for B.Com</button>
-          <button onClick={() => scrollToSection('corporate')} style={mobileNavLinkStyle}>Corporate Trainings (Non-IT)</button>
-          <button onClick={() => scrollToSection('tech')} style={mobileNavLinkStyle}>IT & Tech Certifications</button>
-          <button onClick={() => scrollToSection('specialized')} style={mobileNavLinkStyle}>Specialized Domains</button>
-          <button onClick={() => scrollToSection('basic')} style={mobileNavLinkStyle}>Basic Courses & Tools</button>
-          <button onClick={() => scrollToSection('assessment')} style={mobileNavLinkStyle}>Schedule Career Assessment</button>
+          <button onClick={() => scrollToSection('intermediate')} style={mobileNavLinkStyle}>Tuitions For Intermediate</button>
+          <button onClick={() => scrollToSection('degree')} style={mobileNavLinkStyle}>Tuitions For B. Com</button>
+          <button onClick={() => scrollToSection('corporate')} style={mobileNavLinkStyle}>2. Corporate Trainings (Non-IT)</button>
+          <button onClick={() => scrollToSection('tech')} style={mobileNavLinkStyle}>3. IT Courses</button>
+          <button onClick={() => scrollToSection('specialized')} style={mobileNavLinkStyle}>4. Other Domains (Non-IT)</button>
+          <button onClick={() => scrollToSection('basic')} style={mobileNavLinkStyle}>5. Basic Courses</button>
         </div>
       )}
 

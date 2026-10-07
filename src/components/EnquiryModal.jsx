@@ -6,7 +6,7 @@ export default function EnquiryModal({ isOpen, onClose }) {
     name: '',
     phone: '',
     email: '',
-    course: 'Intermediate Tuitions (TS & AP)',
+    course: 'Tuitions For Intermediate',
     message: ''
   });
 
@@ -86,7 +86,7 @@ export default function EnquiryModal({ isOpen, onClose }) {
               Enquiry Received!
             </h3>
             <p style={{ color: '#475569', fontSize: '0.88rem', marginBottom: '24px' }}>
-              Thank you, {formData.name || 'Student'}! Our team will contact you shortly to provide batch details & fee structure.
+              Thank you, {formData.name || 'Student'}! Our team will contact you shortly.
             </p>
             <button onClick={handleClose} className="btn-blue-light" style={{ width: '100%', justifyContent: 'center' }}>
               Close Window
@@ -100,10 +100,10 @@ export default function EnquiryModal({ isOpen, onClose }) {
             </div>
 
             <h3 style={{ fontSize: '1.4rem', fontWeight: 800, color: '#0f172a', marginBottom: '6px' }}>
-              Book Free Counselling Session
+              Course Enquiry
             </h3>
             <p style={{ fontSize: '0.84rem', color: '#64748b', marginBottom: '20px' }}>
-              Fill in your details below to get instant course info & schedule a 1-on-1 interaction.
+              Fill in your details below to get instant course info.
             </p>
 
             <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '14px' }}>
@@ -132,27 +132,27 @@ export default function EnquiryModal({ isOpen, onClose }) {
               </div>
 
               <div>
-                <label style={labelStyle}>COURSE / STREAM OF INTEREST</label>
+                <label style={labelStyle}>COURSE CATEGORY OF INTEREST</label>
                 <select
                   value={formData.course}
                   onChange={(e) => setFormData({ ...formData, course: e.target.value })}
                   style={inputStyle}
                 >
-                  <option style={optionStyle} value="Intermediate Tuitions (TS & AP)">Intermediate Tuitions (MPC / BiPC / CEC / MEC)</option>
-                  <option style={optionStyle} value="B.Com Degree Tuitions">B.Com Degree Tuitions (General, Comp, Honors)</option>
-                  <option style={optionStyle} value="Corporate Training (Finance & Accounting)">Corporate Training (Finance & Accounting)</option>
-                  <option style={optionStyle} value="Corporate Training (Human Resources)">Corporate Training (Human Resources)</option>
-                  <option style={optionStyle} value="IT & Tech Certifications">IT & Tech Certifications (Full Stack / Digital Marketing)</option>
-                  <option style={optionStyle} value="Specialized Non-IT Operations">Specialized Non-IT Operations</option>
-                  <option style={optionStyle} value="Basic Computer Tools">Basic Computer & Office Software Tools</option>
+                  <option style={optionStyle} value="Tuitions For Intermediate">Tuitions For Intermediate</option>
+                  <option style={optionStyle} value="Tuitions For B. Com">Tuitions For B. Com</option>
+                  <option style={optionStyle} value="2. Corporate Trainings (Non-IT) - Finance Domain">2. Corporate Trainings (Non-IT) - Finance Domain</option>
+                  <option style={optionStyle} value="2. Corporate Trainings (Non-IT) - Human Resource Domain">2. Corporate Trainings (Non-IT) - Human Resource Domain</option>
+                  <option style={optionStyle} value="3. IT Courses">3. IT Courses</option>
+                  <option style={optionStyle} value="4. Other Domains (Non-IT)">4. Other Domains (Non-IT)</option>
+                  <option style={optionStyle} value="5. Basic Courses">5. Basic Courses</option>
                 </select>
               </div>
 
               <div>
-                <label style={labelStyle}>SPECIFIC QUESTION OR TIMING PREFERENCE</label>
+                <label style={labelStyle}>MESSAGE</label>
                 <textarea
                   rows={2}
-                  placeholder="e.g. Morning batch timing or syllabus query..."
+                  placeholder="Enter your message..."
                   value={formData.message}
                   onChange={(e) => setFormData({ ...formData, message: e.target.value })}
                   style={{ ...inputStyle, resize: 'vertical' }}

@@ -47,7 +47,7 @@ export default function Footer() {
             </div>
 
             <p style={{ fontSize: '0.85rem', color: '#94a3b8', lineHeight: 1.6, marginBottom: '20px' }}>
-              Empowering students & professionals with quality TS & AP Intermediate board tuitions, B.Com university coaching, corporate non-IT skills, and tech certifications.
+              JK Educational Academy — Offering Tuitions For Intermediate, Tuitions For B. Com, Corporate Trainings (Non-IT), IT Courses, Other Domains (Non-IT), and Basic Courses.
             </p>
 
             <a href="tel:+919177893905" style={{
@@ -61,33 +61,34 @@ export default function Footer() {
             </a>
           </div>
 
-          {/* Column 2: Academic Programs */}
+          {/* Column 2: Tuitions */}
           <div>
-            <h4 style={columnTitleStyle}>ACADEMIC PROGRAMS</h4>
+            <h4 style={columnTitleStyle}>TUITIONS</h4>
             <ul style={ulStyle}>
-              <li><button onClick={() => scrollToSection('intermediate')} style={footerLinkStyle}>MPC (Maths, Physics, Chem)</button></li>
-              <li><button onClick={() => scrollToSection('intermediate')} style={footerLinkStyle}>BiPC (Botany, Zoology, Physics)</button></li>
+              <li><button onClick={() => scrollToSection('intermediate')} style={footerLinkStyle}>Tuitions For Intermediate</button></li>
+              <li><button onClick={() => scrollToSection('intermediate')} style={footerLinkStyle}>MPC (Maths Physics, Chemistry)</button></li>
+              <li><button onClick={() => scrollToSection('intermediate')} style={footerLinkStyle}>BiPC (Botany, Zoology, Physics, Chemistry)</button></li>
               <li><button onClick={() => scrollToSection('intermediate')} style={footerLinkStyle}>CEC (Civics, Economics, Commerce)</button></li>
               <li><button onClick={() => scrollToSection('intermediate')} style={footerLinkStyle}>MEC (Maths, Economics, Commerce)</button></li>
-              <li><button onClick={() => scrollToSection('degree')} style={footerLinkStyle}>B.Com General & Computers</button></li>
-              <li><button onClick={() => scrollToSection('intermediate')} style={footerLinkStyle}>Integrated Entrance Coaching</button></li>
+              <li><button onClick={() => scrollToSection('intermediate')} style={footerLinkStyle}>AEC (Accounts, Economics, Commerce)</button></li>
+              <li><button onClick={() => scrollToSection('degree')} style={footerLinkStyle}>Tuitions For B. Com</button></li>
             </ul>
           </div>
 
-          {/* Column 3: Corporate & Tech */}
+          {/* Column 3: Corporate & Domains */}
           <div>
-            <h4 style={columnTitleStyle}>CORPORATE & TECH</h4>
+            <h4 style={columnTitleStyle}>CORPORATE & DOMAINS</h4>
             <ul style={ulStyle}>
-              <li><button onClick={() => scrollToSection('corporate')} style={footerLinkStyle}>Finance & Accounting Excellence</button></li>
-              <li><button onClick={() => scrollToSection('corporate')} style={footerLinkStyle}>Human Resource Management</button></li>
-              <li><button onClick={() => scrollToSection('tech')} style={footerLinkStyle}>Full Stack Web Development</button></li>
-              <li><button onClick={() => scrollToSection('tech')} style={footerLinkStyle}>Digital Marketing & Analytics</button></li>
-              <li><button onClick={() => scrollToSection('specialized')} style={footerLinkStyle}>US IT Recruiter Training</button></li>
-              <li><button onClick={() => scrollToSection('basic')} style={footerLinkStyle}>MS Office & Advanced Excel</button></li>
+              <li><button onClick={() => scrollToSection('corporate')} style={footerLinkStyle}>2. Corporate Trainings (Non-IT)</button></li>
+              <li><button onClick={() => scrollToSection('corporate')} style={footerLinkStyle}>Finance Domain</button></li>
+              <li><button onClick={() => scrollToSection('corporate')} style={footerLinkStyle}>Human Resource Domain</button></li>
+              <li><button onClick={() => scrollToSection('tech')} style={footerLinkStyle}>3. IT Courses</button></li>
+              <li><button onClick={() => scrollToSection('specialized')} style={footerLinkStyle}>4. Other Domains (Non-IT)</button></li>
+              <li><button onClick={() => scrollToSection('basic')} style={footerLinkStyle}>5. Basic Courses</button></li>
             </ul>
           </div>
 
-          {/* Column 4: Contact & Admissions */}
+          {/* Column 4: Contact */}
           <div>
             <h4 style={columnTitleStyle}>GET IN TOUCH</h4>
             <div style={{ display: 'flex', flexDirection: 'column', gap: '12px', fontSize: '0.85rem' }}>
@@ -97,14 +98,7 @@ export default function Footer() {
               </div>
               <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
                 <Phone size={16} style={{ color: '#38bdf8', flexShrink: 0 }} />
-                <span>+91 9177893905 / 9177893907</span>
-              </div>
-              <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
-                <Mail size={16} style={{ color: '#38bdf8', flexShrink: 0 }} />
-                <span>admissions@jkacademy.com</span>
-              </div>
-              <div style={{ fontSize: '0.78rem', color: '#64748b', marginTop: '6px' }}>
-                Mon - Sat: 8:00 AM - 8:00 PM IST
+                <span>+91 9177893905</span>
               </div>
             </div>
           </div>
@@ -124,12 +118,6 @@ export default function Footer() {
         }}>
           <div>
             © {new Date().getFullYear()} JK Educational Academy. All rights reserved.
-          </div>
-
-          <div style={{ display: 'flex', gap: '20px' }}>
-            <a href="#hero" onClick={(e) => { e.preventDefault(); scrollToSection('hero'); }} style={bottomLinkStyle}>Privacy Policy</a>
-            <a href="#hero" onClick={(e) => { e.preventDefault(); scrollToSection('hero'); }} style={bottomLinkStyle}>Terms of Service</a>
-            <a href="#hero" onClick={(e) => { e.preventDefault(); scrollToSection('hero'); }} style={bottomLinkStyle}>Admissions Policy</a>
           </div>
         </div>
 
@@ -166,9 +154,4 @@ const footerLinkStyle = {
   padding: 0,
   textAlign: 'left',
   transition: 'color 0.2s ease'
-};
-
-const bottomLinkStyle = {
-  color: '#64748b',
-  textDecoration: 'none'
 };

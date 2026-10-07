@@ -6,8 +6,7 @@ export default function AssessmentSection() {
     fullName: '',
     mobile: '',
     email: '',
-    program: 'Intermediate Tuitions (TS & AP Board)',
-    mode: 'Offline Classroom Coaching',
+    program: 'Tuitions For Intermediate',
     message: ''
   });
 
@@ -39,38 +38,17 @@ export default function AssessmentSection() {
             <div>
               <div className="light-pill" style={{ marginBottom: '16px' }}>
                 <span className="light-pill-dot"></span>
-                1-ON-1 COUNSELLING & CAREER ASSESSMENT
+                COURSE ENQUIRY & INFORMATION
               </div>
 
               <h2 style={{ fontSize: 'clamp(1.8rem, 3.5vw, 2.5rem)', fontWeight: 800, color: '#0f172a', marginBottom: '16px', lineHeight: 1.2 }}>
-                Schedule Your 1-on-1 <br className="desktop-only" />
-                <span className="gradient-text">Academic Audit or Career Assessment.</span>
+                Enquire About Courses Offered at <br className="desktop-only" />
+                <span className="gradient-text">JK Educational Academy.</span>
               </h2>
 
               <p style={{ color: '#475569', fontSize: '0.95rem', marginBottom: '28px', lineHeight: 1.6 }}>
-                Receive a personalized skill map, course roadmap, and career pathway analysis with our senior faculty. Zero cost, no commitment required.
+                Get exact details on Tuitions For Intermediate, Tuitions For B. Com, 2. Corporate Trainings (Non-IT), 3. IT Courses, 4. Other Domains (Non-IT), and 5. Basic Courses.
               </p>
-
-              <div style={{ display: 'flex', flexDirection: 'column', gap: '16px', marginBottom: '32px' }}>
-                <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
-                  <CheckCircle2 size={18} style={{ color: '#2563eb', flexShrink: 0 }} />
-                  <span style={{ fontSize: '0.9rem', color: '#0f172a', fontWeight: 600 }}>
-                    Personalized Learning Pathway & Stream Assessment
-                  </span>
-                </div>
-                <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
-                  <CheckCircle2 size={18} style={{ color: '#2563eb', flexShrink: 0 }} />
-                  <span style={{ fontSize: '0.9rem', color: '#0f172a', fontWeight: 600 }}>
-                    1-on-1 Guidance with Senior Academic & Corporate Faculty
-                  </span>
-                </div>
-                <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
-                  <CheckCircle2 size={18} style={{ color: '#2563eb', flexShrink: 0 }} />
-                  <span style={{ fontSize: '0.9rem', color: '#0f172a', fontWeight: 600 }}>
-                    Comprehensive Skill Gap Analysis & Industry Roadmap
-                  </span>
-                </div>
-              </div>
 
               {/* Direct Phone Box */}
               <div style={{
@@ -91,7 +69,7 @@ export default function AssessmentSection() {
                 </div>
                 <div>
                   <div style={{ fontSize: '0.72rem', fontWeight: 700, color: '#1d4ed8', textTransform: 'uppercase', letterSpacing: '0.06em' }}>
-                    DIRECT COUNSELLING HELPLINE
+                    DIRECT HELPLINE
                   </div>
                   <div style={{ fontSize: '1.05rem', fontWeight: 800, color: '#0f172a', marginTop: '2px' }}>
                     +91 9177893905
@@ -119,10 +97,10 @@ export default function AssessmentSection() {
                     <CheckCircle2 size={32} />
                   </div>
                   <h3 style={{ fontSize: '1.5rem', fontWeight: 800, color: '#0f172a', marginBottom: '10px' }}>
-                    Assessment Scheduled!
+                    Enquiry Submitted!
                   </h3>
                   <p style={{ color: '#475569', fontSize: '0.9rem', marginBottom: '24px' }}>
-                    Thank you, {formData.fullName || 'Student'}! Our academic counselor will call you shortly at {formData.mobile || 'your phone number'} to confirm your slot.
+                    Thank you, {formData.fullName || 'Student'}! We will contact you shortly.
                   </p>
                   <button onClick={() => setSubmitted(false)} className="btn-outline-light" style={{ fontSize: '0.85rem' }}>
                     Submit Another Enquiry
@@ -136,7 +114,7 @@ export default function AssessmentSection() {
                     <input
                       type="text"
                       required
-                      placeholder="e.g. Rahul Sharma"
+                      placeholder="Enter full name"
                       value={formData.fullName}
                       onChange={(e) => setFormData({ ...formData, fullName: e.target.value })}
                       style={inputStyle}
@@ -160,7 +138,7 @@ export default function AssessmentSection() {
                       <input
                         type="email"
                         required
-                        placeholder="rahul@gmail.com"
+                        placeholder="email@example.com"
                         value={formData.email}
                         onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                         style={inputStyle}
@@ -169,27 +147,27 @@ export default function AssessmentSection() {
                   </div>
 
                   <div>
-                    <label style={labelStyle}>PROGRAM OF INTEREST</label>
+                    <label style={labelStyle}>COURSE CATEGORY OF INTEREST</label>
                     <select
                       value={formData.program}
                       onChange={(e) => setFormData({ ...formData, program: e.target.value })}
                       style={inputStyle}
                     >
-                      <option style={optionStyle} value="Intermediate Tuitions (TS & AP Board)">Intermediate Tuitions (TS & AP Board)</option>
-                      <option style={optionStyle} value="Tuitions for B.Com (Gen, Comp & Honors)">Tuitions for B.Com (Gen, Comp & Honors)</option>
-                      <option style={optionStyle} value="Corporate Trainings (Finance & Accounting)">Corporate Trainings (Finance & Accounting)</option>
-                      <option style={optionStyle} value="Corporate Trainings (Human Resources)">Corporate Trainings (Human Resources)</option>
-                      <option style={optionStyle} value="IT & Technology Certifications">IT & Technology Certifications</option>
-                      <option style={optionStyle} value="Specialized Non-IT Operations">Specialized Non-IT Operations</option>
-                      <option style={optionStyle} value="Basic Courses & Office Tools">Basic Courses & Office Tools</option>
+                      <option style={optionStyle} value="Tuitions For Intermediate">Tuitions For Intermediate</option>
+                      <option style={optionStyle} value="Tuitions For B. Com">Tuitions For B. Com</option>
+                      <option style={optionStyle} value="2. Corporate Trainings (Non-IT) - Finance Domain">2. Corporate Trainings (Non-IT) - Finance Domain</option>
+                      <option style={optionStyle} value="2. Corporate Trainings (Non-IT) - Human Resource Domain">2. Corporate Trainings (Non-IT) - Human Resource Domain</option>
+                      <option style={optionStyle} value="3. IT Courses">3. IT Courses</option>
+                      <option style={optionStyle} value="4. Other Domains (Non-IT)">4. Other Domains (Non-IT)</option>
+                      <option style={optionStyle} value="5. Basic Courses">5. Basic Courses</option>
                     </select>
                   </div>
 
                   <div>
-                    <label style={labelStyle}>MESSAGE / SPECIFIC REQUIREMENTS</label>
+                    <label style={labelStyle}>MESSAGE</label>
                     <textarea
                       rows={3}
-                      placeholder="Tell us your current stream, college/year, or career goal..."
+                      placeholder="Enter your message..."
                       value={formData.message}
                       onChange={(e) => setFormData({ ...formData, message: e.target.value })}
                       style={{ ...inputStyle, resize: 'vertical' }}
@@ -197,12 +175,12 @@ export default function AssessmentSection() {
                   </div>
 
                   <button type="submit" className="btn-blue-light" style={{ padding: '14px', fontSize: '0.95rem', width: '100%', marginTop: '6px' }}>
-                    <Send size={16} /> Enquire / Request Free Consultation And Resources
+                    <Send size={16} /> Submit Course Enquiry
                   </button>
 
                   <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '6px', color: '#64748b', fontSize: '0.72rem', marginTop: '4px' }}>
                     <ShieldCheck size={14} style={{ color: '#059669' }} />
-                    <span>Your data is 100% secure & confidential. Zero spam policy.</span>
+                    <span>Your data is strictly confidential.</span>
                   </div>
 
                 </form>
