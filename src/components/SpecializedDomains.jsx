@@ -1,16 +1,12 @@
 import React from 'react';
-import { ArrowRight, ShieldAlert, Headphones, CheckSquare, Compass } from 'lucide-react';
+import { ArrowRight, Clock } from 'lucide-react';
 import { corporateTrainingData } from '../data/academyData';
+import { Card } from '@/components/ui/card';
+import { Button } from '@/components/ui/button';
+import { Badge } from '@/components/ui/badge';
 
 export default function SpecializedDomains({ onEnquire }) {
   const { otherDomains } = corporateTrainingData;
-
-  const icons = [
-    <ShieldAlert size={20} style={{ color: '#2563eb' }} />,
-    <Headphones size={20} style={{ color: '#2563eb' }} />,
-    <CheckSquare size={20} style={{ color: '#2563eb' }} />,
-    <Compass size={20} style={{ color: '#2563eb' }} />
-  ];
 
   return (
     <section id="specialized" className="section-spacing" style={{ backgroundColor: '#f8fafc', position: 'relative' }}>
@@ -23,54 +19,60 @@ export default function SpecializedDomains({ onEnquire }) {
             4. OTHER DOMAINS (NON-IT)
           </div>
           <h2 style={{ fontSize: 'clamp(1.8rem, 3.8vw, 2.6rem)', fontWeight: 800, color: '#0f172a' }}>
-            4. Other Domains (Non-IT)
+            4. Specialized Process Training <span className="gradient-text">(Non-IT Operations)</span>
           </h2>
+          <p className="text-slate-600 text-sm mt-2 max-w-xl mx-auto">
+            Practical BPO, KPO, AML & KYC Operations training for top Hyderabad multinational companies.
+          </p>
         </div>
 
-        {/* 4 Cards Grid */}
+        {/* Spacious Cards Grid */}
         <div style={{
           display: 'grid',
-          gridTemplateColumns: 'repeat(auto-fit, minmax(260px, 1fr))',
-          gap: '20px'
+          gridTemplateColumns: 'repeat(auto-fit, minmax(340px, 1fr))',
+          gap: '24px'
         }}>
-          {otherDomains.map((item, idx) => (
-            <div key={item.id} className="light-card" style={{ padding: '24px', display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
-              <div>
-                <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '14px' }}>
-                  <div style={{
-                    width: '38px', height: '38px', borderRadius: '10px',
-                    background: '#f1f5f9', border: '1px solid #e2e8f0',
-                    display: 'flex', alignItems: 'center', justifyContent: 'center'
-                  }}>
-                    {icons[idx % icons.length]}
+          {otherDomains.map((item) => {
+            const IconC = item.icon;
+            return (
+              <Card
+                key={item.id}
+                animate
+                className="p-7 flex flex-col justify-between bg-white border border-slate-200/90 rounded-2xl shadow-xs hover:shadow-xl hover:border-blue-300 transition-all duration-300 h-full"
+              >
+                <div>
+                  <div className="flex items-center justify-between mb-5">
+                    <div className="w-12 h-12 rounded-xl bg-blue-50 text-blue-600 flex items-center justify-center shadow-xs">
+                      <IconC size={24} />
+                    </div>
+                    <Badge variant="secondary" className="text-xs font-bold text-slate-600 px-3 py-1 bg-slate-100">
+                      <Clock size={12} className="mr-1.5 inline text-blue-500" /> {item.duration}
+                    </Badge>
                   </div>
-                  <span style={{ fontSize: '0.68rem', fontWeight: 700, color: '#64748b', letterSpacing: '0.06em' }}>
-                    Process {idx + 1}
-                  </span>
+
+                  <h3 className="text-lg font-bold text-slate-900 mb-3 leading-snug font-heading">
+                    {item.title}
+                  </h3>
+                  
+                  <p className="text-xs text-slate-500 font-medium mb-4">
+                    Real-time operational workflow training & Hyderabad MNC interview guidance.
+                  </p>
                 </div>
 
-                <h3 style={{ fontSize: '1.15rem', fontWeight: 700, color: '#0f172a', marginBottom: '8px' }}>
-                  {item.title}
-                </h3>
-              </div>
+                {/* Price & CTA */}
+                <div className="pt-4 mt-4 border-t border-slate-100 flex items-center justify-between gap-3">
+                  <div>
+                    <span className="text-2xl font-black text-slate-900 font-heading block">{item.fee}</span>
+                    <span className="text-xs line-through text-slate-400 block font-semibold">{item.originalFee}</span>
+                  </div>
 
-              <button onClick={onEnquire} style={{
-                marginTop: '20px',
-                background: 'none',
-                border: 'none',
-                color: '#2563eb',
-                fontSize: '0.82rem',
-                fontWeight: 700,
-                display: 'flex',
-                alignItems: 'center',
-                gap: '4px',
-                cursor: 'pointer',
-                padding: 0
-              }}>
-                Enquire <ArrowRight size={13} />
-              </button>
-            </div>
-          ))}
+                  <Button variant="gradient" size="default" className="h-10 px-5 text-xs font-bold shadow-md hover:shadow-lg" onClick={() => onEnquire(item)}>
+                    Enroll Course <ArrowRight size={14} />
+                  </Button>
+                </div>
+              </Card>
+            );
+          })}
         </div>
 
       </div>

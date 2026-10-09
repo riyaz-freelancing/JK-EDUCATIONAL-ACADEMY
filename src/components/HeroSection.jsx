@@ -43,13 +43,13 @@ export default function HeroSection({ onEnquire }) {
 
         {/* Main Hero Headline */}
         <h1 style={{
-          fontSize: 'clamp(2.4rem, 6vw, 4.2rem)',
-          fontWeight: 800,
+          fontSize: 'clamp(2rem, 4.5vw, 3.2rem)',
+          fontWeight: 700,
           color: '#0f172a',
-          letterSpacing: '-0.03em',
-          maxWidth: '960px',
-          margin: '0 auto 20px',
-          lineHeight: 1.15
+          letterSpacing: '-0.015em',
+          maxWidth: '860px',
+          margin: '0 auto 18px',
+          lineHeight: 1.2
         }}>
           Courses Offered by <br className="desktop-only" />
           <span className="gradient-text">JK Educational Academy</span>
@@ -63,21 +63,33 @@ export default function HeroSection({ onEnquire }) {
           margin: '0 auto 36px',
           lineHeight: 1.6
         }}>
-          Tuitions For Intermediate, Tuitions For B. Com, 2. Corporate Trainings (Non-IT), 3. IT Courses, 4. Other Domains (Non-IT), and 5. Basic Courses.
+          Tuitions: Intermediate (M.P.C, BiPC, MEC, CEC, AEC) • Graduation (B.Com, BBA) • Masters (M.Com, MBA) • 2. Corporate Trainings (Non-IT) • 3. IT Courses • 4. Other Domains • 5. Basic Courses.
         </p>
 
         {/* Call-to-action buttons */}
         <div style={{
           display: 'flex',
           alignItems: 'center',
-          justify: 'center',
+          justifyContent: 'center',
           gap: '16px',
           flexWrap: 'wrap',
           marginBottom: '60px'
         }}>
-          <button onClick={onEnquire} className="btn-blue-light">
-            Enquire Now <ArrowRight size={17} />
+          <button onClick={onEnquire} className="btn-blue-light" style={{ padding: '14px 28px', fontSize: '1rem' }}>
+            Enroll & Check Course Pricing <ArrowRight size={18} />
           </button>
+          
+          <div style={{
+            padding: '10px 18px',
+            borderRadius: '9999px',
+            background: 'rgba(37, 99, 235, 0.06)',
+            border: '1px solid rgba(37, 99, 235, 0.2)',
+            color: '#1d4ed8',
+            fontSize: '0.85rem',
+            fontWeight: 800
+          }}>
+            ⚡ Tuitions starting at ₹12,000/yr | ₹1,500 per subject
+          </div>
         </div>
 
         {/* Node Flow Tree Diagram matching layout on light background */}
@@ -135,10 +147,10 @@ export default function HeroSection({ onEnquire }) {
           }}>
             <div className="light-card" style={{ padding: '16px 20px', textAlign: 'center' }}>
               <div style={{ fontSize: '0.7rem', fontWeight: 700, color: '#2563eb', letterSpacing: '0.08em', textTransform: 'uppercase', marginBottom: '4px' }}>
-                TUITIONS
+                ACADEMY TUITIONS
               </div>
               <div style={{ fontSize: '0.9rem', fontWeight: 700, color: '#0f172a' }}>
-                Intermediate & B. Com
+                Intermediate, Graduation & Masters
               </div>
             </div>
 

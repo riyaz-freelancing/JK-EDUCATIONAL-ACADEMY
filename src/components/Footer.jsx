@@ -1,7 +1,10 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Phone, Mail, MapPin } from 'lucide-react';
+import logoJk from '../assets/logo-jk.jpeg';
 
-export default function Footer() {
+export default function Footer({ onOpenLegal }) {
+  const [hoveredLink, setHoveredLink] = useState('');
+
   const scrollToSection = (id) => {
     const element = document.getElementById(id);
     if (element) {
@@ -9,12 +12,25 @@ export default function Footer() {
     }
   };
 
+  const getBottomLinkStyle = (key) => ({
+    background: 'none',
+    border: 'none',
+    color: hoveredLink === key ? '#38bdf8' : '#94a3b8',
+    fontSize: '0.82rem',
+    fontFamily: 'var(--font-body)',
+    fontWeight: 500,
+    cursor: 'pointer',
+    padding: '4px 0',
+    textDecoration: hoveredLink === key ? 'underline' : 'none',
+    transition: 'all 0.2s ease'
+  });
+
   return (
     <footer style={{
       position: 'relative',
       background: '#0f172a',
       borderTop: '1px solid #1e293b',
-      paddingTop: '70px',
+      paddingTop: '60px',
       paddingBottom: '30px',
       color: '#cbd5e1'
     }}>
@@ -25,39 +41,39 @@ export default function Footer() {
           display: 'grid',
           gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))',
           gap: '40px',
-          marginBottom: '50px'
+          marginBottom: '48px'
         }}>
 
           {/* Brand Info Column */}
           <div style={{ gridColumn: 'span 1' }}>
             <div style={{ display: 'flex', alignItems: 'center', gap: '12px', marginBottom: '16px' }}>
-              <div style={{
-                width: '38px', height: '38px',
-                borderRadius: '10px',
-                background: 'linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%)',
-                display: 'flex', alignItems: 'center', justifyContent: 'center',
-                fontWeight: 900, fontSize: '1rem', color: '#ffffff',
-                boxShadow: '0 4px 12px rgba(37, 99, 235, 0.3)'
-              }}>
-                JK
-              </div>
+              <img
+                src={logoJk}
+                alt="JK Educational Academy Logo"
+                style={{
+                  height: '44px',
+                  width: 'auto',
+                  borderRadius: '8px',
+                  objectFit: 'contain'
+                }}
+              />
               <div style={{ fontSize: '1.2rem', fontWeight: 800, color: '#ffffff' }}>
                 JK ACADEMY<span style={{ color: '#38bdf8' }}>.</span>
               </div>
             </div>
 
             <p style={{ fontSize: '0.85rem', color: '#94a3b8', lineHeight: 1.6, marginBottom: '20px' }}>
-              JK Educational Academy — Offering Tuitions For Intermediate, Tuitions For B. Com, Corporate Trainings (Non-IT), IT Courses, Other Domains (Non-IT), and Basic Courses.
+              JK Educational Academy — Offering Tuitions For Intermediate, Graduation (B.Com, BBA), Masters (M.Com, MBA), Corporate Trainings (Non-IT), IT Courses, and Basic Courses.
             </p>
 
-            <a href="tel:+919177893905" style={{
+            <a href="tel:+918978919712" style={{
               display: 'inline-flex', alignItems: 'center', gap: '8px',
               padding: '8px 16px', borderRadius: '8px',
               background: 'rgba(37, 99, 235, 0.15)', border: '1px solid rgba(37, 99, 235, 0.3)',
               color: '#ffffff', fontSize: '0.85rem', fontWeight: 700, textDecoration: 'none'
             }}>
               <Phone size={15} style={{ color: '#38bdf8' }} />
-              +91 9177893905
+              +91 89789 19712
             </a>
           </div>
 
@@ -65,13 +81,9 @@ export default function Footer() {
           <div>
             <h4 style={columnTitleStyle}>TUITIONS</h4>
             <ul style={ulStyle}>
-              <li><button onClick={() => scrollToSection('intermediate')} style={footerLinkStyle}>Tuitions For Intermediate</button></li>
-              <li><button onClick={() => scrollToSection('intermediate')} style={footerLinkStyle}>MPC (Maths Physics, Chemistry)</button></li>
-              <li><button onClick={() => scrollToSection('intermediate')} style={footerLinkStyle}>BiPC (Botany, Zoology, Physics, Chemistry)</button></li>
-              <li><button onClick={() => scrollToSection('intermediate')} style={footerLinkStyle}>CEC (Civics, Economics, Commerce)</button></li>
-              <li><button onClick={() => scrollToSection('intermediate')} style={footerLinkStyle}>MEC (Maths, Economics, Commerce)</button></li>
-              <li><button onClick={() => scrollToSection('intermediate')} style={footerLinkStyle}>AEC (Accounts, Economics, Commerce)</button></li>
-              <li><button onClick={() => scrollToSection('degree')} style={footerLinkStyle}>Tuitions For B. Com</button></li>
+              <li><button onClick={() => scrollToSection('intermediate')} style={footerLinkStyle}>Intermediate (M.P.C, BiPC, MEC, CEC, AEC)</button></li>
+              <li><button onClick={() => scrollToSection('degree')} style={footerLinkStyle}>Graduation (B.Com, BBA)</button></li>
+              <li><button onClick={() => scrollToSection('masters')} style={footerLinkStyle}>Masters (M.Com, MBA)</button></li>
             </ul>
           </div>
 
@@ -98,26 +110,62 @@ export default function Footer() {
               </div>
               <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
                 <Phone size={16} style={{ color: '#38bdf8', flexShrink: 0 }} />
-                <span>+91 9177893905</span>
+                <span>+91 89789 19712</span>
               </div>
             </div>
           </div>
 
         </div>
 
-        {/* Bottom Bar */}
+        {/* Bottom Bar with Right Alignment */}
         <div style={{
           paddingTop: '24px',
           borderTop: '1px solid #1e293b',
           display: 'flex',
           alignItems: 'center',
-          justify: 'space-between',
+          justifyContent: 'space-between',
           flexWrap: 'wrap',
           gap: '16px',
-          fontSize: '0.78rem'
+          fontSize: '0.82rem',
+          color: '#94a3b8'
         }}>
           <div>
             © {new Date().getFullYear()} JK Educational Academy. All rights reserved.
+          </div>
+
+          <div style={{
+            display: 'flex',
+            alignItems: 'center',
+            gap: '12px',
+            flexWrap: 'wrap',
+            marginLeft: 'auto'
+          }}>
+            <button
+              onClick={() => onOpenLegal && onOpenLegal('privacy')}
+              onMouseEnter={() => setHoveredLink('privacy')}
+              onMouseLeave={() => setHoveredLink('')}
+              style={getBottomLinkStyle('privacy')}
+            >
+              Privacy Policy
+            </button>
+            <span style={{ color: '#475569', fontSize: '0.9rem', lineHeight: 1 }}>•</span>
+            <button
+              onClick={() => onOpenLegal && onOpenLegal('terms')}
+              onMouseEnter={() => setHoveredLink('terms')}
+              onMouseLeave={() => setHoveredLink('')}
+              style={getBottomLinkStyle('terms')}
+            >
+              Terms & Conditions
+            </button>
+            <span style={{ color: '#475569', fontSize: '0.9rem', lineHeight: 1 }}>•</span>
+            <button
+              onClick={() => onOpenLegal && onOpenLegal('security')}
+              onMouseEnter={() => setHoveredLink('security')}
+              onMouseLeave={() => setHoveredLink('')}
+              style={getBottomLinkStyle('security')}
+            >
+              Security Policy
+            </button>
           </div>
         </div>
 

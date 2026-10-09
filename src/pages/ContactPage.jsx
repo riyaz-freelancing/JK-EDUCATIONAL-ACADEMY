@@ -10,7 +10,7 @@ const contactItems = [
   {
     icon: Phone,
     label: 'Phone Helpline',
-    value: '+91 9177893905'
+    value: '+91 89789 19712'
   },
   {
     icon: Mail,
@@ -178,7 +178,7 @@ export default function ContactPage() {
                       </Field>
                       <Field label="Phone Number" required>
                         <input
-                          type="tel" required placeholder="+91 98765 43210"
+                          type="tel" required placeholder="+91 89789 19712"
                           value={formData.phone}
                           onChange={e => setFormData({ ...formData, phone: e.target.value })}
                           onFocus={() => setFocused('phone')}
@@ -194,8 +194,9 @@ export default function ContactPage() {
                         onChange={e => setFormData({ ...formData, program: e.target.value })}
                         style={{ ...inputStyle, cursor: 'pointer' }}
                       >
-                        <option>Tuitions For Intermediate</option>
-                        <option>Tuitions For B. Com</option>
+                        <option>Tuitions For Intermediate (M.P.C, BiPC, MEC, CEC, AEC)</option>
+                        <option>Tuitions For Graduation (B.Com, BBA)</option>
+                        <option>Tuitions For Masters (M.Com, MBA)</option>
                         <option>2. Corporate Trainings (Non-IT) - Finance Domain</option>
                         <option>2. Corporate Trainings (Non-IT) - Human Resource Domain</option>
                         <option>3. IT Courses</option>

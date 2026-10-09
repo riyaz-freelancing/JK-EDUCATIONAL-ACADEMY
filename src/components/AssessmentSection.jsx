@@ -47,7 +47,7 @@ export default function AssessmentSection() {
               </h2>
 
               <p style={{ color: '#475569', fontSize: '0.95rem', marginBottom: '28px', lineHeight: 1.6 }}>
-                Get exact details on Tuitions For Intermediate, Tuitions For B. Com, 2. Corporate Trainings (Non-IT), 3. IT Courses, 4. Other Domains (Non-IT), and 5. Basic Courses.
+                Get exact details on Tuitions For Intermediate, Graduation (B.Com, BBA), Masters (M.Com, MBA), 2. Corporate Trainings (Non-IT), 3. IT Courses, 4. Other Domains (Non-IT), and 5. Basic Courses.
               </p>
 
               {/* Direct Phone Box */}
@@ -72,7 +72,7 @@ export default function AssessmentSection() {
                     DIRECT HELPLINE
                   </div>
                   <div style={{ fontSize: '1.05rem', fontWeight: 800, color: '#0f172a', marginTop: '2px' }}>
-                    +91 9177893905
+                    +91 89789 19712
                   </div>
                 </div>
               </div>
@@ -127,7 +127,7 @@ export default function AssessmentSection() {
                       <input
                         type="tel"
                         required
-                        placeholder="+91 98765 43210"
+                        placeholder="+91 89789 19712"
                         value={formData.mobile}
                         onChange={(e) => setFormData({ ...formData, mobile: e.target.value })}
                         style={inputStyle}
@@ -153,8 +153,9 @@ export default function AssessmentSection() {
                       onChange={(e) => setFormData({ ...formData, program: e.target.value })}
                       style={inputStyle}
                     >
-                      <option style={optionStyle} value="Tuitions For Intermediate">Tuitions For Intermediate</option>
-                      <option style={optionStyle} value="Tuitions For B. Com">Tuitions For B. Com</option>
+                      <option style={optionStyle} value="Tuitions For Intermediate">Tuitions For Intermediate (M.P.C, BiPC, MEC, CEC, AEC)</option>
+                      <option style={optionStyle} value="Tuitions For Graduation">Tuitions For Graduation (B.Com, BBA)</option>
+                      <option style={optionStyle} value="Tuitions For Masters">Tuitions For Masters (M.Com, MBA)</option>
                       <option style={optionStyle} value="2. Corporate Trainings (Non-IT) - Finance Domain">2. Corporate Trainings (Non-IT) - Finance Domain</option>
                       <option style={optionStyle} value="2. Corporate Trainings (Non-IT) - Human Resource Domain">2. Corporate Trainings (Non-IT) - Human Resource Domain</option>
                       <option style={optionStyle} value="3. IT Courses">3. IT Courses</option>

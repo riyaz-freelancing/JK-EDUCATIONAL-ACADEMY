@@ -1,7 +1,7 @@
-import React, { useState } from 'react';
-import { X, Send, CheckCircle2, ShieldCheck } from 'lucide-react';
+import React, { useState, useEffect } from 'react';
+import { X, Send, CheckCircle2, ShieldCheck, Tag } from 'lucide-react';
 
-export default function EnquiryModal({ isOpen, onClose }) {
+export default function EnquiryModal({ isOpen, onClose, selectedCourse }) {
   const [formData, setFormData] = useState({
     name: '',
     phone: '',
@@ -11,6 +11,15 @@ export default function EnquiryModal({ isOpen, onClose }) {
   });
 
   const [submitted, setSubmitted] = useState(false);
+
+  useEffect(() => {
+    if (selectedCourse?.title) {
+      setFormData(prev => ({
+        ...prev,
+        course: selectedCourse.title
+      }));
+    }
+  }, [selectedCourse]);
 
   if (!isOpen) return null;
 
@@ -32,11 +41,11 @@ export default function EnquiryModal({ isOpen, onClose }) {
       right: 0,
       bottom: 0,
       zIndex: 2000,
-      backgroundColor: 'rgba(15, 23, 42, 0.6)',
+      backgroundColor: 'rgba(15, 23, 42, 0.65)',
       backdropFilter: 'blur(8px)',
       display: 'flex',
       alignItems: 'center',
-      justify: 'center',
+      justifyContent: 'center',
       padding: '20px'
     }}>
       <div style={{
@@ -65,7 +74,7 @@ export default function EnquiryModal({ isOpen, onClose }) {
             borderRadius: '50%',
             display: 'flex',
             alignItems: 'center',
-            justify: 'center',
+            justifyContent: 'center',
             cursor: 'pointer'
           }}
         >
@@ -83,10 +92,10 @@ export default function EnquiryModal({ isOpen, onClose }) {
               <CheckCircle2 size={30} />
             </div>
             <h3 style={{ fontSize: '1.4rem', fontWeight: 800, color: '#0f172a', marginBottom: '8px' }}>
-              Enquiry Received!
+              Enquiry & Admission Request Sent!
             </h3>
             <p style={{ color: '#475569', fontSize: '0.88rem', marginBottom: '24px' }}>
-              Thank you, {formData.name || 'Student'}! Our team will contact you shortly.
+              Thank you, {formData.name || 'Student'}! Our HYD counselors will contact you shortly regarding batch timings and fee payment details.
             </p>
             <button onClick={handleClose} className="btn-blue-light" style={{ width: '100%', justifyContent: 'center' }}>
               Close Window
@@ -96,14 +105,34 @@ export default function EnquiryModal({ isOpen, onClose }) {
           <div>
             <div className="light-pill" style={{ marginBottom: '10px' }}>
               <span className="light-pill-dot"></span>
-              QUICK ADMISSION ENQUIRY
+              ADMISSION & TUITION ENQUIRY
             </div>
 
             <h3 style={{ fontSize: '1.4rem', fontWeight: 800, color: '#0f172a', marginBottom: '6px' }}>
-              Course Enquiry
+              {selectedCourse?.title ? `Enroll in ${selectedCourse.title}` : 'Course Admission Enquiry'}
             </h3>
+            
+            {selectedCourse?.fee && (
+              <div style={{
+                display: 'inline-flex',
+                alignItems: 'center',
+                gap: '8px',
+                padding: '6px 14px',
+                borderRadius: '10px',
+                backgroundColor: 'rgba(37, 99, 235, 0.08)',
+                border: '1px solid rgba(37, 99, 235, 0.2)',
+                color: '#1d4ed8',
+                fontSize: '0.85rem',
+                fontWeight: 800,
+                marginBottom: '16px'
+              }}>
+                <Tag size={15} />
+                <span>HYD Tuition Fee: {selectedCourse.fee} {selectedCourse.feePeriod || ''}</span>
+              </div>
+            )}
+
             <p style={{ fontSize: '0.84rem', color: '#64748b', marginBottom: '20px' }}>
-              Fill in your details below to get instant course info.
+              Fill in your details below for instant course syllabus, batch timings & enrollment steps.
             </p>
 
             <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '14px' }}>
@@ -124,7 +153,7 @@ export default function EnquiryModal({ isOpen, onClose }) {
                 <input
                   type="tel"
                   required
-                  placeholder="+91 98765 43210"
+                  placeholder="+91 89789 19712"
                   value={formData.phone}
                   onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
                   style={inputStyle}
@@ -132,27 +161,21 @@ export default function EnquiryModal({ isOpen, onClose }) {
               </div>
 
               <div>
-                <label style={labelStyle}>COURSE CATEGORY OF INTEREST</label>
-                <select
+                <label style={labelStyle}>SELECTED COURSE / PROGRAM</label>
+                <input
+                  type="text"
+                  required
                   value={formData.course}
                   onChange={(e) => setFormData({ ...formData, course: e.target.value })}
                   style={inputStyle}
-                >
-                  <option style={optionStyle} value="Tuitions For Intermediate">Tuitions For Intermediate</option>
-                  <option style={optionStyle} value="Tuitions For B. Com">Tuitions For B. Com</option>
-                  <option style={optionStyle} value="2. Corporate Trainings (Non-IT) - Finance Domain">2. Corporate Trainings (Non-IT) - Finance Domain</option>
-                  <option style={optionStyle} value="2. Corporate Trainings (Non-IT) - Human Resource Domain">2. Corporate Trainings (Non-IT) - Human Resource Domain</option>
-                  <option style={optionStyle} value="3. IT Courses">3. IT Courses</option>
-                  <option style={optionStyle} value="4. Other Domains (Non-IT)">4. Other Domains (Non-IT)</option>
-                  <option style={optionStyle} value="5. Basic Courses">5. Basic Courses</option>
-                </select>
+                />
               </div>
 
               <div>
-                <label style={labelStyle}>MESSAGE</label>
+                <label style={labelStyle}>MESSAGE / PREFERRED BATCH (CLASSROOM / ONLINE)</label>
                 <textarea
                   rows={2}
-                  placeholder="Enter your message..."
+                  placeholder="e.g. Prefer morning batch at HYD campus or online..."
                   value={formData.message}
                   onChange={(e) => setFormData({ ...formData, message: e.target.value })}
                   style={{ ...inputStyle, resize: 'vertical' }}
@@ -160,7 +183,7 @@ export default function EnquiryModal({ isOpen, onClose }) {
               </div>
 
               <button type="submit" className="btn-blue-light" style={{ width: '100%', justifyContent: 'center', marginTop: '6px', padding: '12px' }}>
-                <Send size={15} /> Submit Quick Enquiry
+                <Send size={15} /> Submit Enrollment Enquiry
               </button>
 
               <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '6px', color: '#64748b', fontSize: '0.7rem' }}>

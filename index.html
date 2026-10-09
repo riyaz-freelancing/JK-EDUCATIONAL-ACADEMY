@@ -4,6 +4,13 @@
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script>
+      if ('scrollRestoration' in history) { history.scrollRestoration = 'manual'; }
+      if (window.location.hash) { history.replaceState(null, null, window.location.pathname); }
+      window.scrollTo(0, 0);
+      document.addEventListener('DOMContentLoaded', function() { window.scrollTo(0, 0); });
+      window.addEventListener('load', function() { window.scrollTo(0, 0); });
+    </script>
     <title>JK Educational Academy | Education, Training &amp; Career Guidance</title>
     <meta name="description" content="JK Educational Academy provides academic coaching, corporate training, career counselling, interview preparation and placement assistance." />
     <link rel="preconnect" href="https://fonts.googleapis.com">

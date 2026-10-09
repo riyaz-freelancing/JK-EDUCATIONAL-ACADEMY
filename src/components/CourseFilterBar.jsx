@@ -5,8 +5,9 @@ export default function CourseFilterBar() {
 
   const filterOptions = [
     { label: 'ALL COURSES', targetId: 'hero' },
-    { label: 'TUITIONS FOR INTERMEDIATE', targetId: 'intermediate' },
-    { label: 'TUITIONS FOR B. COM', targetId: 'degree' },
+    { label: 'INTERMEDIATE (MPC, BiPC, MEC, CEC, AEC)', targetId: 'intermediate' },
+    { label: 'GRADUATION (B.COM, BBA)', targetId: 'degree' },
+    { label: 'MASTERS (M.COM, MBA)', targetId: 'masters' },
     { label: '2. CORPORATE TRAININGS (NON-IT)', targetId: 'corporate' },
     { label: '3. IT COURSES', targetId: 'tech' },
     { label: '4. OTHER DOMAINS (NON-IT)', targetId: 'specialized' },

@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import { Phone, Calendar, Menu, X } from 'lucide-react';
+import { Calendar, Menu, X } from 'lucide-react';
+import logoJk from '../assets/logo-jk.jpeg';
 
-export default function Navbar({ onEnquire }) {
+export default function Navbar({ onEnquire, onLogoClick, onNavSectionClick }) {
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
@@ -11,11 +12,25 @@ export default function Navbar({ onEnquire }) {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  const handleLogoClickInternal = (e) => {
+    e.preventDefault();
+    setMobileMenuOpen(false);
+    if (onLogoClick) {
+      onLogoClick();
+    } else {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+  };
+
   const scrollToSection = (id) => {
     setMobileMenuOpen(false);
-    const element = document.getElementById(id);
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
+    if (onNavSectionClick) {
+      onNavSectionClick(id);
+    } else {
+      const element = document.getElementById(id);
+      if (element) {
+        element.scrollIntoView({ behavior: 'smooth' });
+      }
     }
   };
 
@@ -33,18 +48,18 @@ export default function Navbar({ onEnquire }) {
       <div className="container" style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', height: '76px' }}>
 
         {/* Brand Logo */}
-        <a href="#hero" onClick={(e) => { e.preventDefault(); scrollToSection('hero'); }} style={{ display: 'flex', alignItems: 'center', gap: '14px', textDecoration: 'none' }}>
-          <div style={{
-            width: '42px', height: '42px',
-            borderRadius: '12px',
-            background: 'linear-gradient(135deg, #0f172a 0%, #1e293b 100%)',
-            display: 'flex', alignItems: 'center', justifyContent: 'center',
-            fontWeight: 900, fontSize: '1.1rem', color: '#ffffff',
-            boxShadow: '0 4px 12px rgba(15, 23, 42, 0.2)',
-            letterSpacing: '-0.02em'
-          }}>
-            JK
-          </div>
+        <button type="button" onClick={handleLogoClickInternal} style={{ background: 'none', border: 'none', padding: 0, textAlign: 'left', cursor: 'pointer', display: 'flex', alignItems: 'center', gap: '14px' }}>
+          <img
+            src={logoJk}
+            alt="JK Educational Academy Logo"
+            style={{
+              height: '46px',
+              width: 'auto',
+              maxHeight: '46px',
+              borderRadius: '8px',
+              objectFit: 'contain'
+            }}
+          />
           <div>
             <div style={{ fontSize: '1.15rem', fontWeight: 800, color: '#0f172a', letterSpacing: '-0.02em', lineHeight: 1.1 }}>
               JK ACADEMY<span style={{ color: '#2563eb', fontSize: '1.2rem' }}>.</span>
@@ -53,12 +68,13 @@ export default function Navbar({ onEnquire }) {
               Educational Academy
             </div>
           </div>
-        </a>
+        </button>
 
         {/* Desktop Navigation Links */}
-        <nav className="desktop-only" style={{ display: 'flex', alignItems: 'center', gap: '18px' }}>
+        <nav className="desktop-only" style={{ display: 'flex', alignItems: 'center', gap: '16px' }}>
           <button onClick={() => scrollToSection('intermediate')} style={navLinkStyle}>Intermediate</button>
-          <button onClick={() => scrollToSection('degree')} style={navLinkStyle}>B. Com</button>
+          <button onClick={() => scrollToSection('degree')} style={navLinkStyle}>Graduation</button>
+          <button onClick={() => scrollToSection('masters')} style={navLinkStyle}>Masters</button>
           <button onClick={() => scrollToSection('corporate')} style={navLinkStyle}>Corporate Trainings</button>
           <button onClick={() => scrollToSection('tech')} style={navLinkStyle}>IT Courses</button>
           <button onClick={() => scrollToSection('specialized')} style={navLinkStyle}>Other Domains</button>
@@ -68,19 +84,6 @@ export default function Navbar({ onEnquire }) {
         {/* Right Info & CTA */}
         <div style={{ display: 'flex', alignItems: 'center', gap: '16px' }}>
           
-          {/* Phone Badge */}
-          <a href="tel:+919177893905" className="desktop-only" style={{
-            display: 'flex', alignItems: 'center', gap: '8px',
-            padding: '7px 14px', borderRadius: '9999px',
-            background: 'rgba(37, 99, 235, 0.08)',
-            border: '1px solid rgba(37, 99, 235, 0.2)',
-            color: '#1d4ed8', fontSize: '0.8rem', fontWeight: 700,
-            textDecoration: 'none'
-          }}>
-            <Phone size={14} style={{ color: '#2563eb' }} />
-            +91 9177893905
-          </a>
-
           {/* Consultation CTA */}
           <button onClick={onEnquire} className="btn-blue-light" style={{ padding: '9px 18px', fontSize: '0.85rem' }}>
             <Calendar size={15} />
@@ -116,8 +119,9 @@ export default function Navbar({ onEnquire }) {
           gap: '12px',
           boxShadow: '0 10px 30px rgba(15, 23, 42, 0.08)'
         }}>
-          <button onClick={() => scrollToSection('intermediate')} style={mobileNavLinkStyle}>Tuitions For Intermediate</button>
-          <button onClick={() => scrollToSection('degree')} style={mobileNavLinkStyle}>Tuitions For B. Com</button>
+          <button onClick={() => scrollToSection('intermediate')} style={mobileNavLinkStyle}>Intermediate (M.P.C, BiPC, MEC, CEC, AEC)</button>
+          <button onClick={() => scrollToSection('degree')} style={mobileNavLinkStyle}>Graduation (B.Com, BBA)</button>
+          <button onClick={() => scrollToSection('masters')} style={mobileNavLinkStyle}>Masters (M.Com, MBA)</button>
           <button onClick={() => scrollToSection('corporate')} style={mobileNavLinkStyle}>2. Corporate Trainings (Non-IT)</button>
           <button onClick={() => scrollToSection('tech')} style={mobileNavLinkStyle}>3. IT Courses</button>
           <button onClick={() => scrollToSection('specialized')} style={mobileNavLinkStyle}>4. Other Domains (Non-IT)</button>

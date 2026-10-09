@@ -1,6 +1,7 @@
 import React from 'react';
-import { ArrowRight } from 'lucide-react';
 import { intermediateCourses } from '../data/academyData';
+import FlipCourseCard from './FlipCourseCard';
+import { Badge } from '@/components/ui/badge';
 
 export default function IntermediateTuitions({ onEnquire }) {
   return (
@@ -19,72 +20,33 @@ export default function IntermediateTuitions({ onEnquire }) {
           <div>
             <div className="light-pill" style={{ marginBottom: '14px' }}>
               <span className="light-pill-dot"></span>
-              TUITIONS FOR INTERMEDIATE
+              HYD ACADEMIC TUITIONS
             </div>
-            <h2 style={{ fontSize: 'clamp(1.8rem, 3.5vw, 2.5rem)', fontWeight: 800, color: '#0f172a' }}>
-              Tuitions For Intermediate
+            <h2 style={{ fontSize: 'clamp(2rem, 3.8vw, 2.6rem)', fontWeight: 800, color: '#0f172a', letterSpacing: '-0.02em' }}>
+              Tuitions For Intermediate <span className="gradient-text">(MPC, BiPC, MEC, CEC, AEC)</span>
             </h2>
-            <p style={{ maxWidth: '680px', marginTop: '8px', color: '#475569' }}>
-              Courses offered under Tuitions For Intermediate at JK Educational Academy.
+            <p style={{ maxWidth: '720px', marginTop: '8px', color: '#475569', fontSize: '1.05rem', lineHeight: 1.6 }}>
+              Interactive 3D Cards — Hover or tap any card to view detailed syllabus, batch timings & curriculum!
             </p>
           </div>
 
-          <button onClick={onEnquire} className="btn-outline-light" style={{ padding: '10px 20px', fontSize: '0.85rem' }}>
-            Enquire Now <ArrowRight size={15} />
-          </button>
+          <Badge variant="indigo" className="text-xs sm:text-sm px-4 py-2 font-extrabold shadow-sm">
+            🏷️ Special HYD Board Batch Discount Active
+          </Badge>
         </div>
 
-        {/* Cards Grid */}
+        {/* 3D Flip Cards Grid - 3 Generous Columns */}
         <div style={{
           display: 'grid',
-          gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))',
-          gap: '24px'
+          gridTemplateColumns: 'repeat(auto-fit, minmax(350px, 1fr))',
+          gap: '28px'
         }}>
-          {intermediateCourses.map((stream, idx) => (
-            <div key={idx} className="light-card" style={{ display: 'flex', flexDirection: 'column', justifyContent: 'space-between', padding: '24px' }}>
-              <div>
-                <div style={{
-                  display: 'inline-block',
-                  padding: '4px 12px',
-                  borderRadius: '8px',
-                  background: 'rgba(37, 99, 235, 0.08)',
-                  border: '1px solid rgba(37, 99, 235, 0.2)',
-                  color: '#1d4ed8',
-                  fontSize: '0.75rem',
-                  fontWeight: 700,
-                  marginBottom: '16px'
-                }}>
-                  Course {idx + 1}
-                </div>
-                
-                <h3 style={{ fontSize: '1.2rem', fontWeight: 700, color: '#0f172a', marginBottom: '10px' }}>
-                  {stream.title}
-                </h3>
-              </div>
-
-              <div style={{
-                paddingTop: '16px',
-                borderTop: '1px solid #f1f5f9',
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'space-between'
-              }}>
-                <button onClick={onEnquire} style={{
-                  background: 'none',
-                  border: 'none',
-                  color: '#2563eb',
-                  fontSize: '0.85rem',
-                  fontWeight: 700,
-                  display: 'flex',
-                  alignItems: 'center',
-                  gap: '6px',
-                  cursor: 'pointer',
-                  padding: 0
-                }}>
-                  Enquire <ArrowRight size={14} />
-                </button>
-              </div>
-            </div>
+          {intermediateCourses.map((stream) => (
+            <FlipCourseCard
+              key={stream.id}
+              stream={stream}
+              onEnquire={onEnquire}
+            />
           ))}
         </div>
 
