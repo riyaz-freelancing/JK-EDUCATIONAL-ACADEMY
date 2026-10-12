@@ -44,7 +44,12 @@ export const intermediateCourses = [
     discount: '16% OFF',
     duration: '1 Academic Year',
     mode: 'HYD Campus & Online',
-    highlights: ['Specialist HYD Board Faculty', 'Weekly Chapter Tests', '1-on-1 Doubt Clearing'],
+    highlights: [
+      'Specialist HYD Board Faculty',
+      'Weekly Chapter Tests & 10-Yr Papers',
+      '1-on-1 Doubt Clearing Sessions',
+      '100% Board Pass & Booster Guarantee'
+    ],
     icon: Calculator
   },
   {
@@ -58,7 +63,12 @@ export const intermediateCourses = [
     discount: '18% OFF',
     duration: '1 Academic Year',
     mode: 'HYD Campus & Online',
-    highlights: ['Diagram & Theory Specialization', 'NEET Base Foundation', 'Regular Performance Reports'],
+    highlights: [
+      'Diagram & Theory Specialization',
+      'NEET Base Foundation Drills',
+      'Regular Performance Reports',
+      '100% Board Pass & Booster Guarantee'
+    ],
     icon: Sparkles
   },
   {
@@ -72,7 +82,12 @@ export const intermediateCourses = [
     discount: '15% OFF',
     duration: '1 Academic Year',
     mode: 'HYD Campus & Online',
-    highlights: ['Commerce & Accountancy Focus', 'Maths Problem Solving', 'Model Exam Series'],
+    highlights: [
+      'Commerce & Accountancy Focus',
+      'Maths Problem Solving Practice',
+      'Model Exam Series & Mock Tests',
+      '100% Board Pass & Booster Guarantee'
+    ],
     icon: TrendingUp
   },
   {
@@ -86,7 +101,12 @@ export const intermediateCourses = [
     discount: '20% OFF',
     duration: '1 Academic Year',
     mode: 'HYD Campus & Online',
-    highlights: ['Concept Oriented Coaching', 'Commerce Practical Notes', 'Exam Score Booster'],
+    highlights: [
+      'Concept Oriented Coaching',
+      'Commerce Practical Notes',
+      'Exam Score Booster Drills',
+      '100% Board Pass & Booster Guarantee'
+    ],
     icon: BarChart
   },
   {
@@ -100,7 +120,12 @@ export const intermediateCourses = [
     discount: '19% OFF',
     duration: '1 Academic Year',
     mode: 'HYD Campus & Online',
-    highlights: ['Accounting Ledger Drills', 'Economics Micro/Macro Prep', 'Board Exam Guarantee'],
+    highlights: [
+      'Accounting Ledger Drills',
+      'Economics Micro/Macro Prep',
+      '1-on-1 Doubt Clearing Sessions',
+      '100% Board Pass & Booster Guarantee'
+    ],
     icon: FileText
   }
 ];

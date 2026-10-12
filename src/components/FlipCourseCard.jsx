@@ -1,164 +1,195 @@
 import React, { useState } from 'react';
-import { ArrowRight, CheckCircle2, MapPin, RotateCw, BookOpen, Clock, Award, ShieldCheck } from 'lucide-react';
-import { Button } from '@/components/ui/button';
-import { Badge } from '@/components/ui/badge';
+import { ArrowRight, CheckCircle2, MapPin, BookOpen, ShieldCheck, ChevronDown, ChevronUp } from 'lucide-react';
 
 export default function FlipCourseCard({ stream, onEnquire }) {
-  const [isFlipped, setIsFlipped] = useState(false);
-
+  const [showSyllabus, setShowSyllabus] = useState(false);
   const IconComponent = stream.icon;
-  const parts = stream.title.split(' ');
-  const streamCode = parts[0];
-  const subjectsText = stream.title.replace(streamCode, '').trim();
+
+  // Split "M.P.C (Maths, Physics, Chemistry)" → code + subjects
+  const parenIdx = stream.title.indexOf('(');
+  const streamCode = parenIdx > -1 ? stream.title.slice(0, parenIdx).trim() : stream.title;
+  const subjectsText = parenIdx > -1 ? stream.title.slice(parenIdx) : '';
 
   return (
-    <div
-      className={`flip-card h-[480px] w-full cursor-pointer group ${isFlipped ? 'is-flipped' : ''}`}
-      onMouseEnter={() => setIsFlipped(true)}
-      onMouseLeave={() => setIsFlipped(false)}
-      onClick={() => setIsFlipped(!isFlipped)}
+    <div style={{
+      background: '#ffffff',
+      border: '2px solid #e2e8f0',
+      borderRadius: '20px',
+      overflow: 'hidden',        /* keeps rounded corners */
+      boxShadow: '0 4px 24px rgba(15,23,42,0.06)',
+      display: 'flex',
+      flexDirection: 'column',
+      transition: 'box-shadow 0.25s ease, border-color 0.25s ease',
+    }}
+    onMouseEnter={e => { e.currentTarget.style.borderColor = '#3b82f6'; e.currentTarget.style.boxShadow = '0 8px 32px rgba(37,99,235,0.14)'; }}
+    onMouseLeave={e => { e.currentTarget.style.borderColor = '#e2e8f0'; e.currentTarget.style.boxShadow = '0 4px 24px rgba(15,23,42,0.06)'; }}
     >
-      <div className="flip-card-inner relative w-full h-full duration-700">
-        
-        {/* ==================== FRONT OF CARD ==================== */}
-        <div className="flip-card-front absolute inset-0 w-full h-full bg-white border border-slate-200/90 rounded-2xl p-7 shadow-sm flex flex-col justify-between overflow-hidden">
-          {/* Top Subtle Line Accent */}
-          <div className="absolute top-0 left-0 right-0 h-1.5 bg-gradient-to-r from-blue-600 via-indigo-600 to-purple-600" />
+      {/* ── TOP COLOUR BAR ── */}
+      <div style={{ height: '5px', background: 'linear-gradient(90deg,#2563eb,#6366f1,#8b5cf6)', flexShrink: 0 }} />
 
-          <div>
-            {/* Top Badges Bar */}
-            <div className="flex items-center justify-between mb-4">
-              <span className="text-xs font-extrabold uppercase tracking-wider text-slate-700 bg-slate-100 px-3 py-1 rounded-lg">
-                {stream.duration}
-              </span>
-              <span className="text-xs font-black text-emerald-800 bg-emerald-100 px-3 py-1 rounded-lg border border-emerald-200">
-                {stream.discount}
-              </span>
-            </div>
+      {/* ── CARD BODY ── */}
+      <div style={{ padding: '20px 22px', display: 'flex', flexDirection: 'column', gap: '16px', flex: 1 }}>
 
-            {/* Title & Icon Header */}
-            <div className="flex items-start gap-4 mb-4">
-              <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-blue-600 to-indigo-700 text-white flex items-center justify-center flex-shrink-0 shadow-md shadow-blue-500/20">
-                <IconComponent size={26} />
-              </div>
-              <div>
-                <h3 className="text-2xl font-black text-slate-900 font-heading tracking-tight">{streamCode}</h3>
-                <p className="text-sm font-bold text-slate-700 mt-0.5 leading-snug">{subjectsText}</p>
-                <div className="flex items-center gap-1.5 text-xs font-extrabold text-blue-600 mt-1.5">
-                  <MapPin size={14} className="text-blue-600 flex-shrink-0" />
-                  <span>{stream.mode}</span>
-                </div>
-              </div>
-            </div>
+        {/* Row 1: Duration badge  +  Discount badge */}
+        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: '8px' }}>
+          <span style={{
+            fontSize: '11px', fontWeight: 800, textTransform: 'uppercase', letterSpacing: '0.07em',
+            color: '#475569', background: '#f1f5f9', border: '1px solid #e2e8f0',
+            padding: '5px 11px', borderRadius: '7px',
+          }}>
+            {stream.duration}
+          </span>
+          <span style={{
+            fontSize: '11px', fontWeight: 900,
+            color: '#065f46', background: '#d1fae5', border: '1px solid #6ee7b7',
+            padding: '5px 11px', borderRadius: '7px',
+          }}>
+            {stream.discount}
+          </span>
+        </div>
 
-            {/* Pricing Box */}
-            <div className="p-4 rounded-xl bg-slate-50 border border-slate-200 my-4">
-              <div className="flex items-baseline justify-between">
-                <div className="flex items-baseline gap-2">
-                  <span className="text-3xl font-black text-slate-900 font-heading tracking-tight">{stream.fee}</span>
-                  <span className="text-sm font-bold text-slate-600">{stream.feePeriod}</span>
-                </div>
-                <span className="text-sm line-through text-slate-400 font-semibold">{stream.originalFee}</span>
-              </div>
-
-              <div className="flex items-center justify-between text-xs text-blue-900 font-extrabold mt-2.5 pt-2 border-t border-slate-200/80">
-                <span>Monthly Fee Option:</span>
-                <span className="bg-blue-100 text-blue-950 px-2.5 py-0.5 rounded-md font-black text-xs">{stream.monthlyFee}</span>
-              </div>
-            </div>
-
-            {/* Highlights List */}
-            <div className="space-y-2.5 mb-4">
-              {stream.highlights.slice(0, 3).map((item, i) => (
-                <div key={i} className="flex items-center gap-2.5 text-xs font-semibold text-slate-700">
-                  <CheckCircle2 size={15} className="text-emerald-500 flex-shrink-0" />
-                  <span>{item}</span>
-                </div>
-              ))}
+        {/* Row 2: Icon + Course Name + Subjects */}
+        <div style={{ display: 'flex', alignItems: 'flex-start', gap: '14px' }}>
+          <div style={{
+            width: '50px', height: '50px', borderRadius: '14px', flexShrink: 0,
+            background: 'linear-gradient(135deg,#2563eb,#4f46e5)',
+            display: 'flex', alignItems: 'center', justifyContent: 'center',
+            boxShadow: '0 4px 12px rgba(37,99,235,0.25)',
+            color: '#fff',
+          }}>
+            <IconComponent size={24} />
+          </div>
+          <div style={{ flex: 1, minWidth: 0 }}>
+            <h3 style={{ fontSize: '1.6rem', fontWeight: 900, color: '#0f172a', lineHeight: 1, margin: 0 }}>
+              {streamCode}
+            </h3>
+            <p style={{ fontSize: '0.82rem', fontWeight: 700, color: '#475569', margin: '5px 0 0', lineHeight: 1.35 }}>
+              {subjectsText}
+            </p>
+            <div style={{ display: 'flex', alignItems: 'center', gap: '5px', marginTop: '6px' }}>
+              <MapPin size={13} color="#2563eb" />
+              <span style={{ fontSize: '11px', fontWeight: 700, color: '#2563eb' }}>{stream.mode}</span>
             </div>
           </div>
+        </div>
 
-          {/* Flip Hint Bar */}
-          <div className="pt-3 border-t border-slate-100 flex items-center justify-between text-xs font-extrabold text-blue-600 group-hover:text-blue-700">
-            <span className="flex items-center gap-1.5">
-              <RotateCw size={13} className="animate-spin-slow" /> Hover to view Syllabus & Details
+        {/* Row 3: Price box */}
+        <div style={{
+          background: '#f8fafc', border: '1.5px solid #e2e8f0',
+          borderRadius: '14px', padding: '14px 16px',
+        }}>
+          {/* Fee row */}
+          <div style={{ display: 'flex', alignItems: 'baseline', justifyContent: 'space-between' }}>
+            <div style={{ display: 'flex', alignItems: 'baseline', gap: '6px' }}>
+              <span style={{ fontSize: '2rem', fontWeight: 900, color: '#0f172a', lineHeight: 1 }}>
+                {stream.fee}
+              </span>
+              <span style={{ fontSize: '12px', fontWeight: 700, color: '#64748b' }}>
+                {stream.feePeriod}
+              </span>
+            </div>
+            <span style={{ fontSize: '12px', fontWeight: 700, color: '#94a3b8', textDecoration: 'line-through' }}>
+              {stream.originalFee}
             </span>
-            <ArrowRight size={14} />
+          </div>
+
+          {/* Monthly fee row */}
+          <div style={{
+            display: 'flex', alignItems: 'center', justifyContent: 'space-between',
+            marginTop: '10px', paddingTop: '10px', borderTop: '1px solid #e2e8f0',
+          }}>
+            <span style={{ fontSize: '12px', fontWeight: 700, color: '#334155' }}>Monthly Fee Option:</span>
+            <span style={{
+              fontSize: '12px', fontWeight: 900, color: '#fff',
+              background: '#2563eb', padding: '4px 12px', borderRadius: '7px',
+            }}>
+              {stream.monthlyFee}
+            </span>
           </div>
         </div>
 
-        {/* ==================== BACK OF CARD (DETAILS & SYLLABUS) ==================== */}
-        <div className="flip-card-back absolute inset-0 w-full h-full bg-slate-900 text-white border border-slate-800 rounded-2xl p-7 shadow-2xl flex flex-col justify-between overflow-hidden">
-          {/* Top Subtle Line Accent */}
-          <div className="absolute top-0 left-0 right-0 h-1.5 bg-gradient-to-r from-blue-400 via-indigo-400 to-purple-400" />
-
-          <div>
-            {/* Header */}
-            <div className="flex items-center justify-between mb-4 pb-3 border-b border-slate-800">
-              <div className="flex items-center gap-2">
-                <div className="w-8 h-8 rounded-lg bg-blue-600/30 text-blue-400 flex items-center justify-center">
-                  <BookOpen size={18} />
-                </div>
-                <div>
-                  <h4 className="text-base font-black text-white font-heading">{streamCode} Course Details</h4>
-                  <p className="text-[11px] text-slate-400 font-semibold">Comprehensive Syllabus & Schedule</p>
-                </div>
-              </div>
-              <Badge variant="secondary" className="bg-blue-900/60 text-blue-300 text-[11px] font-bold">
-                HYD Batch
-              </Badge>
+        {/* Row 4: Highlights */}
+        <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
+          {stream.highlights.map((item, i) => (
+            <div key={i} style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+              <CheckCircle2 size={15} color="#10b981" style={{ flexShrink: 0 }} />
+              <span style={{ fontSize: '12px', fontWeight: 600, color: '#334155' }}>{item}</span>
             </div>
-
-            {/* Syllabus & Features */}
-            <div className="space-y-3 my-4 text-xs">
-              <div className="p-3 rounded-xl bg-slate-800/80 border border-slate-700/80">
-                <span className="text-[11px] font-extrabold uppercase tracking-wider text-blue-400 block mb-1">
-                  📚 Core Curriculum Covered:
-                </span>
-                <p className="text-slate-200 font-medium leading-relaxed">
-                  Full 1st & 2nd year Board Syllabus with Chapter-wise Notes & 10-Yr Previous Question Papers.
-                </p>
-              </div>
-
-              <div className="p-3 rounded-xl bg-slate-800/80 border border-slate-700/80">
-                <span className="text-[11px] font-extrabold uppercase tracking-wider text-indigo-400 block mb-1">
-                  ⏰ HYD Campus Batch Timings:
-                </span>
-                <div className="flex items-center justify-between text-slate-200 font-semibold">
-                  <span>Morning: 7:00 AM – 9:00 AM</span>
-                  <span>Evening: 5:00 PM – 7:00 PM</span>
-                </div>
-              </div>
-
-              <div className="space-y-2 pt-1">
-                <div className="flex items-center gap-2 text-slate-300 font-medium">
-                  <ShieldCheck size={14} className="text-emerald-400 flex-shrink-0" />
-                  <span>100% Board Exam Pass & Score Booster Guarantee</span>
-                </div>
-                <div className="flex items-center gap-2 text-slate-300 font-medium">
-                  <Award size={14} className="text-blue-400 flex-shrink-0" />
-                  <span>Senior HYD Faculty with 12+ Yrs Experience</span>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          {/* Back CTA Button */}
-          <div className="pt-3 border-t border-slate-800">
-            <Button
-              variant="gradient"
-              size="lg"
-              className="w-full h-12 text-sm font-extrabold shadow-lg"
-              onClick={(e) => {
-                e.stopPropagation();
-                onEnquire(stream);
-              }}
-            >
-              Enroll Now ({stream.fee}) <ArrowRight size={16} />
-            </Button>
-          </div>
+          ))}
         </div>
 
+        {/* Row 5: Syllabus toggle */}
+        <button
+          type="button"
+          onClick={() => setShowSyllabus(!showSyllabus)}
+          style={{
+            display: 'flex', alignItems: 'center', justifyContent: 'space-between',
+            width: '100%', background: '#eff6ff', border: '1.5px solid #bfdbfe',
+            borderRadius: '10px', padding: '10px 14px', cursor: 'pointer',
+            fontSize: '12px', fontWeight: 800, color: '#1d4ed8',
+          }}
+        >
+          <span style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
+            <BookOpen size={14} />
+            {showSyllabus ? 'Hide Syllabus & Batch Timings' : 'View Syllabus & Batch Timings'}
+          </span>
+          {showSyllabus ? <ChevronUp size={16} /> : <ChevronDown size={16} />}
+        </button>
+
+        {/* Expandable syllabus panel */}
+        {showSyllabus && (
+          <div style={{
+            background: '#0f172a', borderRadius: '14px', padding: '16px',
+            display: 'flex', flexDirection: 'column', gap: '12px',
+          }}>
+            <div>
+              <div style={{ fontSize: '10px', fontWeight: 900, textTransform: 'uppercase', letterSpacing: '0.08em', color: '#67e8f9', marginBottom: '6px' }}>
+                📚 Core Curriculum Covered
+              </div>
+              <p style={{ fontSize: '12px', fontWeight: 600, color: '#e2e8f0', lineHeight: 1.5, margin: 0 }}>
+                Full 1st & 2nd year Board Syllabus with Chapter-wise Notes & 10-Yr Previous Question Papers.
+              </p>
+            </div>
+            <div style={{ borderTop: '1px solid #1e293b', paddingTop: '12px' }}>
+              <div style={{ fontSize: '10px', fontWeight: 900, textTransform: 'uppercase', letterSpacing: '0.08em', color: '#fbbf24', marginBottom: '8px' }}>
+                ⏰ HYD Campus Batch Timings
+              </div>
+              <div style={{ display: 'flex', gap: '8px', flexWrap: 'wrap' }}>
+                {['Morning: 7:00 – 9:00 AM', 'Evening: 5:00 – 7:00 PM'].map(t => (
+                  <span key={t} style={{ fontSize: '11px', fontWeight: 800, color: '#f1f5f9', background: '#1e293b', padding: '5px 10px', borderRadius: '7px', border: '1px solid #334155' }}>
+                    {t}
+                  </span>
+                ))}
+              </div>
+            </div>
+            <div style={{ borderTop: '1px solid #1e293b', paddingTop: '10px', display: 'flex', alignItems: 'center', gap: '8px' }}>
+              <ShieldCheck size={16} color="#34d399" style={{ flexShrink: 0 }} />
+              <span style={{ fontSize: '12px', fontWeight: 800, color: '#34d399' }}>100% Board Exam Pass & Score Booster Guarantee</span>
+            </div>
+          </div>
+        )}
+
+      </div>
+
+      {/* ── ENROLL BUTTON ── */}
+      <div style={{ padding: '0 22px 20px' }}>
+        <button
+          type="button"
+          onClick={() => onEnquire(stream)}
+          style={{
+            width: '100%', height: '48px',
+            background: 'linear-gradient(135deg,#2563eb,#6366f1)',
+            color: '#fff', border: 'none', borderRadius: '12px',
+            fontSize: '14px', fontWeight: 900, cursor: 'pointer',
+            display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '8px',
+            boxShadow: '0 4px 18px rgba(37,99,235,0.30)',
+            transition: 'transform 0.2s, box-shadow 0.2s',
+          }}
+          onMouseEnter={e => { e.currentTarget.style.transform = 'translateY(-2px)'; e.currentTarget.style.boxShadow = '0 8px 28px rgba(37,99,235,0.40)'; }}
+          onMouseLeave={e => { e.currentTarget.style.transform = ''; e.currentTarget.style.boxShadow = '0 4px 18px rgba(37,99,235,0.30)'; }}
+        >
+          Enroll Now ({stream.fee}) <ArrowRight size={16} />
+        </button>
       </div>
     </div>
   );
